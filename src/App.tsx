@@ -1,9 +1,8 @@
 import React, { FunctionComponent, useState } from "react";
-
 import { Viewer } from "./components/Viewer";
 import { TemplateType, TNewYork, TStockholm } from "./templates";
 import { Switcher } from "./components/Switcher";
-import { Row, Col } from "antd";
+
 import "antd/dist/antd.css";
 import "./App.css";
 
@@ -20,21 +19,22 @@ function App() {
   };
 
   const [templateName, setTemplateName] = useState<TemplateType>(
-    TemplateType.NewYork
+    TemplateType.Stockholm
   );
 
   const TemplatedViewer = getTemplate(templateName);
 
   return (
     <div className="app">
-      <Row>
-        <Col span={4}>
-          <Switcher onTemplateSwitched={(type) => setTemplateName(type)} />
-        </Col>
-        <Col span={20}>
+      <div className="header"></div>
+      <div className="sider">
+        <Switcher onTemplateSwitched={(type) => setTemplateName(type)} />
+      </div>
+      <div className="content">
+        <div className="page">
           <TemplatedViewer />
-        </Col>
-      </Row>
+        </div>
+      </div>
     </div>
   );
 }

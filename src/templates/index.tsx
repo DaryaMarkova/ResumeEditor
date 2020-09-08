@@ -5,4 +5,8 @@ export { TNewYork, TStockholm };
 export enum TemplateType {
   Stockholm,
   NewYork,
+  Vienna,
+  Sydney,
+  London,
+  Dublin,
 }
