@@ -1,0 +1,13 @@
+.template-newyork .name {
+    margin-bottom: 0px;
+    margin-top: 20px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+.template-newyork .avatar {
+    border-radius: 4px;
+}
+.template-newyork .position {
+    text-align: center;
+}

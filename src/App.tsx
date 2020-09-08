@@ -1,24 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { FunctionComponent, useState } from "react";
+
+import { Viewer } from "./components/Viewer";
+import { TemplateType, TNewYork, TStockholm } from "./templates";
+import { Switcher } from "./components/Switcher";
+import { Row, Col } from "antd";
+import "antd/dist/antd.css";
+import "./App.css";
 
 function App() {
+  const getTemplate = (option: TemplateType): FunctionComponent => {
+    switch (option) {
+      case TemplateType.NewYork:
+        return Viewer(TNewYork);
+      case TemplateType.Stockholm:
+        return Viewer(TStockholm);
+      default:
+        return Viewer(TStockholm);
+    }
+  };
+
+  const [templateName, setTemplateName] = useState<TemplateType>(
+    TemplateType.NewYork
+  );
+
+  const TemplatedViewer = getTemplate(templateName);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <Row>
+        <Col span={4}>
+          <Switcher onTemplateSwitched={(type) => setTemplateName(type)} />
+        </Col>
+        <Col span={20}>
+          <TemplatedViewer />
+        </Col>
+      </Row>
     </div>
   );
 }
