@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { TemplateType } from "../templates";
 import { Card, Row, Col } from "antd";
-import "./Switcher.css";
+import "./switcher.css";
 
 export const Switcher = (props: {
   onTemplateSwitched: (type: TemplateType) => void;
