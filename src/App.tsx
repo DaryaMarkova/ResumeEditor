@@ -3,7 +3,7 @@ import "antd/dist/antd.css";
 import "./App.css";
 import { TemplateSwitcherPage } from "./pages/template";
 import { ResumeEditorPage } from "./pages/editor";
-import { Switch, Route, Link } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
 function App() {
   return (

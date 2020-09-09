@@ -1,10 +1,12 @@
 import React from "react";
-import { Editor, Viewer } from "../components";
-import { TNewYork } from "../templates";
+import { Editor } from "../components";
+import { useStore } from "../utils/useStore";
+import { getSelectedTemplate } from "../utils";
 import "./editor.css";
 
 export function ResumeEditorPage() {
-  const TemplatedViewer = Viewer(TNewYork);
+  const { store } = useStore();
+  const TemplatedViewer = getSelectedTemplate(store.selectedTemplate);
 
   return (
     <>
