@@ -26,3 +26,11 @@
     background-color: #fff;
     border-radius: 4px;
 }
+.template-switcher-page-link-to-editor {
+    line-height: 46px;
+    margin-left: 20px;
+    color: #fff;
+}
+.template-switcher-page-link-to-editor span {
+    padding-left: 4px;
+}

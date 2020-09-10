@@ -3,22 +3,24 @@ import { Switcher } from "../components/";
 import { useStore } from "../utils/useStore";
 import { getSelectedTemplate } from "../utils";
 import { DispatchAction } from "../store";
-import { TemplateType } from "../templates";
+import { TEMPLATE } from "../templates";
 import { Link } from "react-router-dom";
+import { LeftOutlined } from "@ant-design/icons/";
 import "./template.css";
 
 export function TemplateSwitcherPage() {
   const { store, dispatch } = useStore();
   const TemplatedViewer = getSelectedTemplate(store.selectedTemplate);
 
-  const dispatchSelectedTemplate = (type: TemplateType) =>
+  const dispatchSelectedTemplate = (type: TEMPLATE) =>
     dispatch({ type: DispatchAction.switchTemplateAction, payload: type });
 
   return (
     <>
       <div className="template-switcher-page-header">
-        <Link to={"/editor"} style={{ lineHeight: "40px", marginLeft: "20px" }}>
-          Back to editor
+        <Link className="template-switcher-page-link-to-editor" to="/editor">
+          <LeftOutlined />
+          <span>Back to editor</span>
         </Link>
       </div>
       <div className="template-switcher-page-sider">

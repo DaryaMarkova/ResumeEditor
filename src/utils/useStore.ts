@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { store$, dispatch, StoreType, DispatchActionType } from "../store";
+import { store$, dispatch } from "../store";
+import { DispatchActionType, StoreType } from "../types";
 
 export function useStore(): {
   store: StoreType;
