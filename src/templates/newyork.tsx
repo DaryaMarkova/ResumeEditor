@@ -1,8 +1,13 @@
 import React, { FunctionComponent } from "react";
 import { Col, Row, Typography } from "antd";
+import { IProfile } from "../types";
 import "./newyork.css";
 
-export const TNewYork: FunctionComponent = () => {
+export const TemplateNewYork: FunctionComponent<{ profile: IProfile }> = ({
+  profile,
+}) => {
+  const { Title, Paragraph } = Typography;
+
   return (
     <div>
       <div className="template-newyork">
@@ -18,12 +23,12 @@ export const TNewYork: FunctionComponent = () => {
 
         <Row align="middle" justify="space-around">
           <div>
-            <Typography.Title level={3} className="name">
+            <Title level={3} className="name">
               <span>Darya</span>&nbsp;<span>Markova</span>
-            </Typography.Title>
-            <Typography.Paragraph className="position">
-              <span>Software Engineer</span>
-            </Typography.Paragraph>
+            </Title>
+            <Paragraph className="position">
+              <span>{profile.jobTitle || "Job Title"}</span>
+            </Paragraph>
           </div>
         </Row>
       </div>

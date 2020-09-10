@@ -1,8 +1,8 @@
-import { TNewYork } from "./newyork";
-import { TStockholm } from "./stockholm";
-export { TNewYork, TStockholm };
+import { TemplateNewYork } from "./newyork";
+import { TemplateStockholm } from "./stockholm";
+export { TemplateNewYork, TemplateStockholm };
 
-export enum TEMPLATE {
+export enum ETemplate {
   Stockholm,
   NewYork,
   Vienna,

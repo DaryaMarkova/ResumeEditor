@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
-import { store$, dispatch } from "../store";
-import { DispatchActionType, StoreType } from "../types";
+import { store$, dispatch, TStore, TDispatchAction } from "../store";
 
 export function useStore(): {
-  store: StoreType;
-  dispatch: (action: DispatchActionType) => void;
+  store: TStore;
+  dispatch: (action: TDispatchAction) => void;
 } {
   const [store, setStore] = useState(store$.value);
 

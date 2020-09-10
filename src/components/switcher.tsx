@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { TEMPLATE } from "../templates";
+import { ETemplate } from "../templates";
 import { Card, Row, Col } from "antd";
 import "./switcher.css";
 
 export const Switcher = (props: {
-  onTemplateSwitched: (type: TEMPLATE) => void;
+  onTemplateSwitched: (type: ETemplate) => void;
 }) => {
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
   const templateSwitched = (index: number) => {
@@ -15,11 +15,11 @@ export const Switcher = (props: {
   return (
     <div className="app-switcher">
       <Row justify="center" gutter={18}>
-        {Object.keys(TEMPLATE)
+        {Object.keys(ETemplate)
           .filter((key) => +key >= 0)
           .map((key: string, index: number) => (
             <Col style={{ marginBottom: "14px" }}>
-              <div className="title">{TEMPLATE[index]}</div>
+              <div className="title">{ETemplate[index]}</div>
               <Card
                 className={index === selectedIndex ? "tile active" : "tile"}
                 size="small"

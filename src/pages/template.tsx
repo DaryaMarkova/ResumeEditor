@@ -3,17 +3,21 @@ import { Switcher } from "../components/";
 import { useStore } from "../utils/useStore";
 import { getSelectedTemplate } from "../utils";
 import { DispatchAction } from "../store";
-import { TEMPLATE } from "../templates";
+import { ETemplate } from "../templates";
 import { Link } from "react-router-dom";
 import { LeftOutlined } from "@ant-design/icons/";
 import "./template.css";
 
 export function TemplateSwitcherPage() {
   const { store, dispatch } = useStore();
+
   const TemplatedViewer = getSelectedTemplate(store.selectedTemplate);
 
-  const dispatchSelectedTemplate = (type: TEMPLATE) =>
-    dispatch({ type: DispatchAction.switchTemplateAction, payload: type });
+  const dispatchSelectedTemplate = (type: ETemplate) =>
+    dispatch({
+      type: DispatchAction.switchTemplateAction,
+      payload: type,
+    });
 
   return (
     <>
