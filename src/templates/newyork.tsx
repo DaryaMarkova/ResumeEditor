@@ -27,7 +27,7 @@ export const TemplateNewYork: FunctionComponent<{ profile: IProfile }> = ({
               <span>Darya</span>&nbsp;<span>Markova</span>
             </Title>
             <Paragraph className="position">
-              <span>{profile.jobTitle || "Job Title"}</span>
+              <span>{profile.jobTitle || "  "}</span>
             </Paragraph>
           </div>
         </Row>

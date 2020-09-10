@@ -1,19 +1,23 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { store$, dispatch, TStore, TDispatchAction } from "../store";
+import { Subscription } from "rxjs";
 
 export function useStore(): {
   store: TStore;
   dispatch: (action: TDispatchAction) => void;
 } {
   const [store, setStore] = useState(store$.value);
+  const subscription = useRef<Subscription>();
 
   useEffect(() => {
-    store$.subscribe((state) => {
+    subscription.current = store$.subscribe((state) => {
       setStore(state);
     });
 
     return () => {
-      // TODO: unsubscribe
+      if (subscription.current) {
+        subscription.current.unsubscribe();
+      }
     };
   });
 

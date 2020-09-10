@@ -16,7 +16,7 @@ export const Editor = () => {
     setProfile(updatedProfile);
 
     dispatch({
-      type: DispatchAction.switchTemplateAction,
+      type: DispatchAction.updateProfileAction,
       payload: updatedProfile,
     });
   };
