@@ -1,9 +1,9 @@
 import React, { FunctionComponent } from "react";
 import { Col, Row, Typography } from "antd";
-import { IProfile } from "../types";
-import "./newyork.css";
+import { TemplateProps } from "../index";
+import "./NewYorkTemplate.css";
 
-export const TemplateNewYork: FunctionComponent<{ profile: IProfile }> = ({
+export const NewYorkTemplate: FunctionComponent<TemplateProps> = ({
   profile,
 }) => {
   const { Title, Paragraph } = Typography;
@@ -27,7 +27,7 @@ export const TemplateNewYork: FunctionComponent<{ profile: IProfile }> = ({
               <span>Darya</span>&nbsp;<span>Markova</span>
             </Title>
             <Paragraph className="position">
-              <span>{profile.jobTitle || "  "}</span>
+              <span>{profile.jobTitle}</span>
             </Paragraph>
           </div>
         </Row>

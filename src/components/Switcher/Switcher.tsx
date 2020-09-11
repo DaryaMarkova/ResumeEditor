@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { ETemplate } from "../templates";
+import { ETemplate } from "../../templates";
 import { Card, Row, Col } from "antd";
-import "./switcher.css";
+import "./Switcher.css";
 
 export const Switcher = (props: {
   onTemplateSwitched: (type: ETemplate) => void;

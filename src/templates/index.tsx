@@ -1,6 +1,8 @@
-import { TemplateNewYork } from "./newyork";
-import { TemplateStockholm } from "./stockholm";
-export { TemplateNewYork, TemplateStockholm };
+import { NewYorkTemplate } from "./Newyork/NewYorkTemplate";
+import { StockholmTemplate } from "./Stockholm/StockholmTemplate";
+import { IProfile } from "../types";
+
+export { NewYorkTemplate, StockholmTemplate };
 
 export enum ETemplate {
   Stockholm,
@@ -10,3 +12,7 @@ export enum ETemplate {
   London,
   Dublin,
 }
+
+export type TemplateProps = {
+  profile: IProfile;
+};

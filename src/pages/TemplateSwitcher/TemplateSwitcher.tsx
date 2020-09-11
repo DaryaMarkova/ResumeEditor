@@ -1,17 +1,14 @@
 import React from "react";
-import { Switcher } from "../components/";
-import { useStore } from "../utils/useStore";
-import { getSelectedTemplate } from "../utils";
-import { DispatchAction } from "../store";
-import { ETemplate } from "../templates";
+import { Switcher, Viewer } from "../../components";
+import { useStore } from "../../utils/useStore";
+import { DispatchAction } from "../../store";
+import { ETemplate } from "../../templates";
 import { Link } from "react-router-dom";
 import { LeftOutlined } from "@ant-design/icons/";
-import "./template.css";
+import "./TemplateSwitcher.css";
 
 export function TemplateSwitcherPage() {
-  const { store, dispatch } = useStore();
-
-  const TemplatedViewer = getSelectedTemplate(store.selectedTemplate);
+  const { dispatch } = useStore();
 
   const dispatchSelectedTemplate = (type: ETemplate) =>
     dispatch({
@@ -34,7 +31,7 @@ export function TemplateSwitcherPage() {
       </div>
       <div className="template-switcher-page-content">
         <div className="template-switcher-page-sheet">
-          <TemplatedViewer />
+          <Viewer />
         </div>
       </div>
     </>

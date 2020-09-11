@@ -1,5 +1,5 @@
-import { Switcher } from "./switcher";
-import { Viewer } from "./viewer";
-import { Editor } from "./editor";
+import { Switcher } from "./Switcher/Switcher";
+import { Viewer } from "./Viewer/Viewer";
+import { Editor } from "./Editor/Editor";
 
 export { Switcher, Viewer, Editor };

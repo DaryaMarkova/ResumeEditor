@@ -23,7 +23,7 @@
 
 .app-switcher .tile.active::before {
     position: absolute;
-    content: url('../assets/icon_check.svg');
+    content: url('../../assets/icon_check.svg');
     top: calc(50% - 18px);
     left: calc(50% - 18px);
     padding: 6px;

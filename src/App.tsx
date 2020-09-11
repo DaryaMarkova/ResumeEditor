@@ -1,9 +1,9 @@
 import React from "react";
 import "antd/dist/antd.css";
-import "./App.css";
-import { TemplateSwitcherPage } from "./pages/template";
-import { ResumeEditorPage } from "./pages/editor";
+import { TemplateSwitcherPage } from "./pages/TemplateSwitcher/TemplateSwitcher";
+import { ResumeEditorPage } from "./pages/ResumeEditor/ResumeEditorPage";
 import { Switch, Route } from "react-router-dom";
+import "./App.css";
 
 function App() {
   return (

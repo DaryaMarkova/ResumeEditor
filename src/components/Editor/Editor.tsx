@@ -1,8 +1,8 @@
 import React, { ChangeEvent, useState } from "react";
-import { useStore } from "../utils/useStore";
+import { useStore } from "../../utils/useStore";
 import { Row, Col, Input, Typography } from "antd";
-import { IProfile } from "../types";
-import { DispatchAction } from "../store";
+import { IProfile } from "../../types";
+import { DispatchAction } from "../../store";
 
 export const Editor = () => {
   const { store, dispatch } = useStore();

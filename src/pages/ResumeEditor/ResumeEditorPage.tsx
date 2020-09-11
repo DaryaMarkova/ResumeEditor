@@ -1,15 +1,10 @@
 import React from "react";
-import { Editor } from "../components";
-import { useStore } from "../utils/useStore";
-import { getSelectedTemplate } from "../utils";
+import { Editor, Viewer } from "../../components";
 import { SlackOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
-import "./editor.css";
+import "./ResumeEditorPage.css";
 
 export function ResumeEditorPage() {
-  const { store } = useStore();
-  const TemplatedViewer = getSelectedTemplate(store.selectedTemplate);
-
   return (
     <>
       <div className="resume-editor-page-sider">
@@ -17,7 +12,7 @@ export function ResumeEditorPage() {
       </div>
       <div className="resume-editor-page-content">
         <div className="resume-editor-page-sheet">
-          <TemplatedViewer />
+          <Viewer />
         </div>
         <div className="resume-editor-page-tools">
           <Link
