@@ -24,10 +24,11 @@ export const NewYorkTemplate: FunctionComponent<TemplateProps> = ({
         <Row align="middle" justify="space-around">
           <div>
             <Title level={3} className="name">
-              <span>Darya</span>&nbsp;<span>Markova</span>
+              <span>{profile.firstName || "First Name"}</span>&nbsp;
+              <span>{profile.lastName || "Last Name"}</span>
             </Title>
             <Paragraph className="position">
-              <span>{profile.jobTitle}</span>
+              <span>{profile.jobTitle || "Job Title"}</span>
             </Paragraph>
           </div>
         </Row>

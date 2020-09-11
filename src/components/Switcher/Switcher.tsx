@@ -7,6 +7,7 @@ export const Switcher = (props: {
   onTemplateSwitched: (type: ETemplate) => void;
 }) => {
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
+
   const templateSwitched = (index: number) => {
     setSelectedIndex(index);
     props.onTemplateSwitched(index);
@@ -18,7 +19,7 @@ export const Switcher = (props: {
         {Object.keys(ETemplate)
           .filter((key) => +key >= 0)
           .map((key: string, index: number) => (
-            <Col style={{ marginBottom: "14px" }}>
+            <Col key={key} style={{ marginBottom: "14px" }}>
               <div className="title">{ETemplate[index]}</div>
               <Card
                 className={index === selectedIndex ? "tile active" : "tile"}

@@ -30,7 +30,7 @@ export function useSelectedTemplate(): FunctionComponent<TemplateProps> {
 
   useEffect(() => {
     subscription.current = store$.subscribe((state) => {
-      setSelectedTemplate(selectedTemplate);
+      setSelectedTemplate(state.selectedTemplate);
     });
 
     return () => {
