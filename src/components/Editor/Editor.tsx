@@ -1,8 +1,9 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { useState } from "react";
 import { useStore } from "../../utils/useStore";
-import { Row, Col, Input, Typography } from "antd";
+import { Row, Col, Typography, Divider } from "antd";
 import { IProfile } from "../../types";
 import { DispatchAction } from "../../store";
+import { Input } from "../../shared";
 import "./Editor.css";
 
 export const Editor = () => {
@@ -10,10 +11,10 @@ export const Editor = () => {
   const [profile, setProfile] = useState<IProfile>(store.profile);
 
   const onProfileChanged = (
-    event: ChangeEvent<HTMLInputElement>,
-    property: keyof IProfile
+    value: string,
+    property: keyof IProfile | string
   ) => {
-    const updatedProfile = { ...profile, [property]: event.target.value };
+    const updatedProfile = { ...profile, [property]: value };
     setProfile(updatedProfile);
 
     dispatch({
@@ -23,47 +24,61 @@ export const Editor = () => {
   };
 
   const { Text, Title } = Typography;
-  // TODO: create common shared components for widgets
+
   return (
     <div className="resume-editor">
       <Title
         className="resume-editor-title"
-        level={5}
+        level={4}
         style={{ fontWeight: 400 }}
       >
         Summary
       </Title>
+      <Divider />
+      <Text strong>Personal Details</Text>
       <Row gutter={24} className="resume-editor-row">
         <Col span={12}>
-          <Text className="resume-editor-label" type="secondary">
-            Job Title
-          </Text>
           <Input
-            className="resume-editor-input"
-            value={profile.jobTitle}
-            onChange={(event) => onProfileChanged(event, "jobTitle")}
+            placeholder="Job Title"
+            defaultValue={profile.jobTitle}
+            bindProperty={"jobTitle"}
+            onInputValueChanged={onProfileChanged}
           />
         </Col>
       </Row>
       <Row gutter={24} className="resume-editor-row">
         <Col span={12}>
-          <Text className="resume-editor-label" type="secondary">
-            First Name
-          </Text>
           <Input
-            className="resume-editor-input"
-            value={profile.firstName}
-            onChange={(event) => onProfileChanged(event, "firstName")}
+            placeholder="First Name"
+            defaultValue={profile.firstName}
+            bindProperty={"firstName"}
+            onInputValueChanged={onProfileChanged}
           />
         </Col>
         <Col span={12}>
-          <Text className="resume-editor-label" type="secondary">
-            Last Name
-          </Text>
           <Input
-            className="resume-editor-input"
-            value={profile.lastName}
-            onChange={(event) => onProfileChanged(event, "lastName")}
+            placeholder="Last Name"
+            defaultValue={profile.lastName}
+            bindProperty={"lastName"}
+            onInputValueChanged={onProfileChanged}
+          />
+        </Col>
+      </Row>
+      <Row gutter={24} className="resume-editor-row">
+        <Col span={12}>
+          <Input
+            placeholder="Email"
+            defaultValue={profile.email}
+            bindProperty={"email"}
+            onInputValueChanged={onProfileChanged}
+          />
+        </Col>
+        <Col span={12}>
+          <Input
+            placeholder="Phone"
+            defaultValue={profile.phone}
+            bindProperty={"phone"}
+            onInputValueChanged={onProfileChanged}
           />
         </Col>
       </Row>

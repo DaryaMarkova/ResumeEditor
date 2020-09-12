@@ -1,12 +1,14 @@
 import React, { FunctionComponent } from "react";
 import { Col, Row, Typography } from "antd";
 import { TemplateProps } from "../index";
+import { PhoneOutlined } from "@ant-design/icons";
+import { ProfileDefaults } from "../../types";
 import "./NewYorkTemplate.css";
 
 export const NewYorkTemplate: FunctionComponent<TemplateProps> = ({
   profile,
 }) => {
-  const { Title, Paragraph } = Typography;
+  const { Title, Text, Paragraph } = Typography;
 
   return (
     <div>
@@ -14,7 +16,7 @@ export const NewYorkTemplate: FunctionComponent<TemplateProps> = ({
         <Row align="middle" justify="space-around" gutter={10}>
           <Col>
             <img
-              className="avatar"
+              className="template-newyork-avatar"
               width={80}
               src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
             />
@@ -22,15 +24,36 @@ export const NewYorkTemplate: FunctionComponent<TemplateProps> = ({
         </Row>
 
         <Row align="middle" justify="space-around">
-          <div>
-            <Title level={3} className="name">
-              <span>{profile.firstName || "First Name"}</span>&nbsp;
-              <span>{profile.lastName || "Last Name"}</span>
+          <div className="text-centered">
+            <Title level={4} className="template-newyork-name">
+              <span>{profile.firstName || ProfileDefaults.firstName}</span>
+              &nbsp;
+              <span>{profile.lastName || ProfileDefaults.lastName}</span>
             </Title>
-            <Paragraph className="position">
-              <span>{profile.jobTitle || "Job Title"}</span>
-            </Paragraph>
+            <Text className="template-newyork-position">
+              <span>{profile.jobTitle || ProfileDefaults.jobTitle}</span>
+            </Text>
+            <Text className="template-newyork-phone">
+              <PhoneOutlined />
+              {profile.phone || ProfileDefaults.phone}
+            </Text>
           </div>
+        </Row>
+
+        <Row gutter={10} style={{ marginTop: "30px" }}>
+          <Col className="text-centered" span={6}>
+            <Text
+              strong
+              className="template-newyork-title-details text-upper-case"
+            >
+              Details
+            </Text>
+            <Paragraph style={{ marginBottom: "0px" }}>
+              {profile.phone || ProfileDefaults.phone}
+            </Paragraph>
+            <Text>{profile.email || ProfileDefaults.email}</Text>
+          </Col>
+          <Col span={18}></Col>
         </Row>
       </div>
     </div>

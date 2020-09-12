@@ -5,22 +5,6 @@
 .resume-editor-title {
     text-align: center;
 }
-.resume-editor-input {
-    background-color: rgb(242, 245, 250);
-    outline: none;
-    border: none;
-    border-radius: 3px 3px 0px 0px;
-    border-bottom: 1px solid rgb(242, 245, 250);
-}
-.resume-editor-input:focus {
-    outline: none;
-    box-shadow: none;
-    border-bottom: 1px solid rgb(33, 150, 243);
-}
 .resume-editor-row {
     margin-top: 10px;
-}
-.resume-editor-label {
-    margin-left: 4px;
-    font-size: 10px;
 }
