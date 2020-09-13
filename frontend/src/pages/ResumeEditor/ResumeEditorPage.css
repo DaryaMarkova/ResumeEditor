@@ -1,3 +1,4 @@
+
 .resume-editor-page-sider {
   position: absolute;
   top: 0;
@@ -13,13 +14,13 @@
   left: 50%;
   width: 50%;
   height: 100%;
-  background-color: rgb(122, 133, 153);
+	background-color: rgb(122, 133, 153);
 }
 
 .resume-editor-page-sheet {
   position: relative;
   width: 640px;
-  min-height: 900px;
+  height: 900px;
   margin: 0px auto;
   background-color: #fff;
   border-radius: 4px;
@@ -29,8 +30,8 @@
 .resume-editor-page-tools {
   position: absolute;
   height: 20px;
-  top: calc(100% - 32px);
-  left: 0px;
+  top: calc(100% - 46px);
+	left: 0px;
   width: 100%;
   text-align: center;
 }
