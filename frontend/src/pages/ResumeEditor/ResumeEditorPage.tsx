@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Editor, Viewer } from "../../components";
 import { SlackOutlined } from "@ant-design/icons";
 import { Button } from "antd";
@@ -6,24 +6,23 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import fileDownload from "js-file-download";
 import "./ResumeEditorPage.css";
+import { Test } from "../../components/Test";
 
 export function ResumeEditorPage() {
+  const testRef = useRef<HTMLDivElement>(null);
+
   const onDownloadPdfButtonClicked = () => {
     axios
       .post(
         "http://localhost:3005/pdf",
         {
-          content:
-            '<div style="text-align:center; border:1px dotted orange"><h2>Love love love</h2></div>',
+          content: testRef.current?.innerHTML,
+          // '<div style="text-align:center; border:1px dotted orange"><h2>Love love love</h2></div>'
         },
         {
           responseType: "blob",
         }
       )
-      /*axios
-			.get('http://localhost:3005/pdf', {
-				responseType: 'blob'
-			}) */
       .then((response) => fileDownload(response.data, "resume.pdf"))
       .catch((err) => console.log(err));
   };
@@ -31,6 +30,7 @@ export function ResumeEditorPage() {
   return (
     <div className="resume-editor-page">
       <div className="resume-editor-page-sider">
+        <Test componentRef={testRef} />
         <Editor />
       </div>
       <div className="resume-editor-page-content">

@@ -22,9 +22,7 @@ app.get("/pdf", (req, res) => {
 // https://www.npmjs.com/package/html-pdf
 app.post("/pdf", (req, res) => {
   try {
-    //TODO: escape all double quotes req.body.content
     const html = `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Resume</title></head><body>${req.body.content}</body></html>`;
-    // const html = fs.readFileSync('./temp.html', 'utf8');
     pdf.create(html, {}).toFile("./resume.pdf", function (err, response) {
       if (err) {
         console.log(err);

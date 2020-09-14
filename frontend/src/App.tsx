@@ -9,10 +9,10 @@ function App() {
   return (
     <div className="app">
       <Switch>
-        <Route path="/editor">
+        <Route path={["/editor", "/"]}>
           <ResumeEditorPage />
         </Route>
-        <Route path={["/templates", "/"]}>
+        <Route path={"/templates"}>
           <TemplateSwitcherPage />
         </Route>
       </Switch>
