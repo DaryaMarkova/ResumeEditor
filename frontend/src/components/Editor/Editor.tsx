@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, RefObject } from "react";
 import { useStore } from "../../utils/useStore";
 import { Row, Col, Typography, Divider } from "antd";
 import { IProfile } from "../../types";

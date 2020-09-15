@@ -6,17 +6,16 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import fileDownload from "js-file-download";
 import "./ResumeEditorPage.css";
-import { Test } from "../../components/Test";
 
 export function ResumeEditorPage() {
-  const testRef = useRef<HTMLDivElement>(null);
+  const templateRef = useRef<HTMLDivElement>(null);
 
   const onDownloadPdfButtonClicked = () => {
     axios
       .post(
         "http://localhost:3005/pdf",
         {
-          content: testRef.current?.innerHTML,
+          content: templateRef.current?.innerHTML,
           // '<div style="text-align:center; border:1px dotted orange"><h2>Love love love</h2></div>'
         },
         {
@@ -30,12 +29,11 @@ export function ResumeEditorPage() {
   return (
     <div className="resume-editor-page">
       <div className="resume-editor-page-sider">
-        <Test componentRef={testRef} />
         <Editor />
       </div>
       <div className="resume-editor-page-content">
         <div className="resume-editor-page-sheet">
-          <Viewer />
+          <Viewer templateRef={templateRef} />
         </div>
         <div className="resume-editor-page-tools">
           <Link

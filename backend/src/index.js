@@ -13,11 +13,26 @@ app.use(cors());
 
 const port = 3005;
 
-// downloading via pure get method
 app.get("/pdf", (req, res) => {
-  res.download("./resume.pdf");
-});
+  try {
+    const html = fs.readFileSync(
+      "/Users/daryamarkova/WebProjects/resume-editor/backend/src/test.html",
+      "utf-8"
+    );
 
+    pdf.create(html, {}).toFile("./test.pdf", function (err, response) {
+      if (err) {
+        console.log(err);
+        return res.status(500).json(err);
+      }
+
+      res.download("./test.pdf");
+    });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json(err);
+  }
+});
 // just test script
 // https://www.npmjs.com/package/html-pdf
 app.post("/pdf", (req, res) => {

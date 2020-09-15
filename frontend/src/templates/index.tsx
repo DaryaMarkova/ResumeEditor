@@ -1,6 +1,7 @@
 import { NewYorkTemplate } from "./Newyork/NewYorkTemplate";
 import { StockholmTemplate } from "./Stockholm/StockholmTemplate";
 import { IProfile } from "../types";
+import { RefObject } from "react";
 
 export { NewYorkTemplate, StockholmTemplate };
 
@@ -15,4 +16,5 @@ export enum ETemplate {
 
 export type TemplateProps = {
   profile: IProfile;
+  domRef?: RefObject<HTMLDivElement>;
 };

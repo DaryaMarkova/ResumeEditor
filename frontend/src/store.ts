@@ -18,7 +18,7 @@ export type TDispatchAction = {
 };
 
 const initialState: TStore = {
-  selectedTemplate: ETemplate.Stockholm,
+  selectedTemplate: ETemplate.NewYork,
   profile: {
     jobTitle: "",
     firstName: "",

@@ -1,14 +1,14 @@
-import React from "react";
+import React, { RefObject } from "react";
 import { useSelectedTemplate } from "../../utils/useSelectedTemplate";
 import { useStore } from "../../utils/useStore";
 
-export const Viewer = () => {
+export const Viewer = (props: { templateRef?: RefObject<HTMLDivElement> }) => {
   const SelectedTemplate = useSelectedTemplate();
   const { store } = useStore();
 
   return (
     <div className="viewer">
-      <SelectedTemplate profile={store.profile} />
+      <SelectedTemplate domRef={props.templateRef} profile={store.profile} />
     </div>
   );
 };
