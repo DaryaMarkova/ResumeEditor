@@ -1,0 +1,10 @@
+.resume-editor {
+  padding: 20px 60px;
+  width: 100%;
+}
+.resume-editor-title {
+  text-align: center;
+}
+.resume-editor-row {
+  margin-top: 10px;
+}
