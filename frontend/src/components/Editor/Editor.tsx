@@ -1,9 +1,9 @@
-import React, { useState, RefObject } from "react";
+import React, { useState } from "react";
 import { useStore } from "../../utils/useStore";
 import { Row, Col, Typography, Divider } from "antd";
 import { IProfile } from "../../types";
 import { DispatchAction } from "../../store";
-import { Input } from "../../shared";
+import { Input, ImagePicker } from "../../shared";
 import "./Editor.css";
 
 export const Editor = () => {
@@ -44,6 +44,9 @@ export const Editor = () => {
             bindProperty={"jobTitle"}
             onInputValueChanged={onProfileChanged}
           />
+        </Col>
+        <Col span={12}>
+          <ImagePicker />
         </Col>
       </Row>
       <Row gutter={24} className="resume-editor-row">
