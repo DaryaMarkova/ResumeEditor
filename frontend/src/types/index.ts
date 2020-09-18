@@ -4,7 +4,9 @@ export interface IProfile {
   lastName?: string;
   email?: string;
   phone?: string;
+  hasAvatar?: boolean;
 }
+
 export const ProfileDefaults = {
   jobTitle: "Job title",
   firstName: "Firstname",

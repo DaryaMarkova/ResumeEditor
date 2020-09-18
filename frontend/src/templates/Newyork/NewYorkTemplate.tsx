@@ -23,17 +23,20 @@ export const NewYorkTemplate: FunctionComponent<TemplateProps> = ({
             <td>
               <table>
                 <tr>
-                  <td>
-                    <img
-                      style={{
-                        width: "70px",
-                        height: "auto",
-                        borderRadius: "6px",
-                      }}
-                      src="https://klike.net/uploads/posts/2019-06/1561009159_3.jpg"
-                    />
-                  </td>
-                  <td valign="middle" style={{ paddingLeft: "10px" }}>
+                  {profile.hasAvatar && (
+                    <td style={{ paddingRight: "10px" }}>
+                      <img
+                        style={{
+                          width: "70px",
+                          height: "auto",
+                          borderRadius: "6px",
+                        }}
+                        src="http://localhost:3005/assets/avatar.jpg"
+                      />
+                    </td>
+                  )}
+
+                  <td valign="middle">
                     <h2 style={{ padding: 0, margin: 0, fontWeight: 600 }}>
                       {profile.firstName || ProfileDefaults.firstName}&nbsp;
                       {profile.lastName || ProfileDefaults.lastName}

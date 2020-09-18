@@ -23,6 +23,20 @@ export const Editor = () => {
     });
   };
 
+  const onImageChoosen = () => {
+    dispatch({
+      type: DispatchAction.setAvatarShownAction,
+      payload: true,
+    });
+  };
+
+  const onImageReseted = () => {
+    dispatch({
+      type: DispatchAction.setAvatarShownAction,
+      payload: false,
+    });
+  };
+
   const { Text, Title } = Typography;
 
   return (
@@ -46,7 +60,10 @@ export const Editor = () => {
           />
         </Col>
         <Col span={12}>
-          <ImagePicker />
+          <ImagePicker
+            onImageChoosen={onImageChoosen}
+            onImageReseted={onImageReseted}
+          />
         </Col>
       </Row>
       <Row gutter={24} className="resume-editor-row">

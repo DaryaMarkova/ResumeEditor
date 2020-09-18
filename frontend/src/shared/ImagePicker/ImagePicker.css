@@ -33,7 +33,14 @@
 }
 .widget-image-picker-upload-btn {
   margin-top: 4px;
+  font-size: small;
 }
 .widget-image-picker-delete-btn {
   z-index: 20;
+  color: rgb(152, 161, 179);
+}
+.widget-image-picker-edit-btn,
+.widget-image-picker-delete-btn {
+  display: block;
+  font-size: small;
 }
