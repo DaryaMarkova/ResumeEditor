@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import { Button } from "antd";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { resumeService } from "../../service/resume.service";
+import { Progress } from "antd";
 import "./ImagePicker.css";
 
 export const ImagePicker = (props: {
@@ -10,6 +11,7 @@ export const ImagePicker = (props: {
 }) => {
   const imageInputRef = useRef<HTMLInputElement>(null);
   const [imageSource, setImageSource] = useState<any>();
+  const [isLoading, setIsLoading] = useState(false);
 
   const readImage = (file: Blob): Promise<any> => {
     return new Promise((resolve, reject) => {
@@ -30,14 +32,18 @@ export const ImagePicker = (props: {
     const files = imageInputRef.current?.files;
     try {
       if (files && files[0]) {
+        setIsLoading(true);
+
         const source = await readImage(files[0]);
         await resumeService.uploadFile(files[0]);
 
+        setIsLoading(false);
         setImageSource(source);
+
         props.onImageChoosen();
       }
     } catch (err) {
-      console.log(err);
+      setIsLoading(false);
     }
   };
 
@@ -101,6 +107,7 @@ export const ImagePicker = (props: {
             Upload photo
           </Button>
         )}
+        {isLoading && <Progress type="circle" percent={50} width={30} />}
       </div>
     </>
   );
