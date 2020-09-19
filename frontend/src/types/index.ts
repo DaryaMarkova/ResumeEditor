@@ -7,6 +7,19 @@ export interface IProfile {
   hasAvatar?: boolean;
 }
 
+export enum SkillLevelType {
+  Novice,
+  Beginner,
+  Skillfull,
+  Experienced,
+  Expert,
+}
+
+export interface Skill {
+  level: SkillLevelType;
+  skillName: string;
+}
+
 export const ProfileDefaults = {
   jobTitle: "Job title",
   firstName: "Firstname",

@@ -1,0 +1,33 @@
+.widget-skill-name {
+  margin-left: -6px;
+  font-size: 0.9em;
+  font-weight: 500;
+}
+.widget-skill-level {
+  font-size: 0.9em;
+  margin-left: -4px;
+}
+.widget-skill {
+  background-color: rgb(242, 245, 250);
+}
+
+.widget-skill .ant-collapse-content-box {
+  padding: 4px 12px;
+}
+
+.widget-skill .ant-collapse-header {
+  padding: 6px !important;
+  padding-left: 40px !important;
+}
+
+.widget-skill-level-text {
+  display: block;
+  margin-bottom: 2px;
+  font-size: 10px;
+}
+.widget-skill-level-btn {
+  width: 40px;
+}
+.widget-skill .anticon-right {
+  top: 30% !important;
+}

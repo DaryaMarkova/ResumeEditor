@@ -3,8 +3,8 @@ import { Input, Typography } from "antd";
 import "./Input.css";
 
 export const EditableInput = (props: {
-  placeholder: string;
-  defaultValue: string | undefined;
+  placeholder?: string;
+  defaultValue?: string | undefined;
   bindProperty: string;
   onInputValueChanged: (value: string, property: string) => void;
 }) => {

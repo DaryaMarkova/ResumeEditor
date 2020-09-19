@@ -4,6 +4,7 @@ import { Row, Col, Typography, Divider } from "antd";
 import { IProfile } from "../../types";
 import { DispatchAction } from "../../store";
 import { Input, ImagePicker } from "../../shared";
+import { EditableSkill } from "../../shared/Skill/Skill";
 import "./Editor.css";
 
 export const Editor = () => {
@@ -49,7 +50,10 @@ export const Editor = () => {
         Summary
       </Title>
       <Divider />
-      <Text strong>Personal Details</Text>
+      <Row className="resume-editor-section-header">
+        <Text strong>Personal Details</Text>
+      </Row>
+
       <Row gutter={24} className="resume-editor-row">
         <Col span={12}>
           <Input
@@ -101,6 +105,12 @@ export const Editor = () => {
             onInputValueChanged={onProfileChanged}
           />
         </Col>
+      </Row>
+      <Row className="resume-editor-section-header">
+        <Text strong>Skills</Text>
+      </Row>
+      <Row>
+        <EditableSkill />
       </Row>
     </div>
   );
