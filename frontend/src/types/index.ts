@@ -18,6 +18,7 @@ export enum SkillLevelType {
 export interface Skill {
   level: SkillLevelType;
   skillName: string;
+  id: number;
 }
 
 export const ProfileDefaults = {

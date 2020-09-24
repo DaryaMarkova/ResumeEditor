@@ -1,7 +1,6 @@
 .resume-editor-page {
   width: 100%;
   display: flex;
-  height: 100%;
 }
 
 .resume-editor-page-sider {
@@ -9,6 +8,7 @@
   max-width: 960px;
   flex: 1;
   background-color: #fff;
+  height: 100vh;
 }
 
 .resume-editor-page-content {

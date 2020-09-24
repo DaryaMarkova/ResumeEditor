@@ -5,6 +5,7 @@ import { IProfile } from "../../types";
 import { DispatchAction } from "../../store";
 import { Input, ImagePicker } from "../../shared";
 import { EditableSkill } from "../../shared/Skill/Skill";
+import { SkillList } from "../SkillList/SkillList";
 import "./Editor.css";
 
 export const Editor = () => {
@@ -38,7 +39,7 @@ export const Editor = () => {
     });
   };
 
-  const { Text, Title } = Typography;
+  const { Text, Title, Paragraph } = Typography;
 
   return (
     <div className="resume-editor">
@@ -50,11 +51,13 @@ export const Editor = () => {
         Summary
       </Title>
       <Divider />
-      <Row className="resume-editor-section-header">
-        <Text strong>Personal Details</Text>
-      </Row>
-
       <Row gutter={24} className="resume-editor-row">
+        <Col span={24}>
+          <Paragraph className="resume-editor-section-header" strong>
+            Personal Details
+          </Paragraph>
+        </Col>
+
         <Col span={12}>
           <Input
             placeholder="Job Title"
@@ -106,11 +109,14 @@ export const Editor = () => {
           />
         </Col>
       </Row>
-      <Row className="resume-editor-section-header">
-        <Text strong>Skills</Text>
-      </Row>
       <Row>
-        <EditableSkill />
+        <Col span={24}>
+          <Paragraph className="resume-editor-section-header" strong>
+            Skills
+          </Paragraph>
+        </Col>
+
+        <SkillList />
       </Row>
     </div>
   );
