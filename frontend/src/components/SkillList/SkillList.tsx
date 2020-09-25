@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Collapse, Button, Row, Typography } from "antd";
-import { PlusOutlined } from "@ant-design/icons";
+import { Button, Row, Col, Typography } from "antd";
+import { PlusOutlined, DeleteOutlined } from "@ant-design/icons";
 import { Skill, SkillLevelType } from "../../types";
 import { EditableSkill } from "../../shared/Skill/Skill";
 import "./SkillList.css";
@@ -12,11 +12,14 @@ export const SkillList = () => {
 
   const addSkill = () => {
     setSkills([
-      ...skills,
+      ...skills.map((it) => {
+        return { ...it, isActive: false };
+      }),
       {
         level: SkillLevelType.Novice,
         skillName: "",
         id: skills.length,
+        isActive: true,
       },
     ]);
   };
@@ -27,48 +30,41 @@ export const SkillList = () => {
     );
   };
 
-  const { Panel } = Collapse;
-  const { Text } = Typography;
+  const onSkillDeleted = (index: number) => {
+    setSkills(skills.slice(0, index).concat(skills.slice(index + 1)));
+    // setSkills(skills.filter((skill) => skill.id !== id));
+  };
 
   return (
-    <>
-      <Row className="full-width">
-        <Button
-          onClick={addSkill}
-          type="link"
-          className="widget-skill-list-add-btn"
-        >
-          <PlusOutlined />
-          Add skill
-        </Button>
-      </Row>
-      <Row className="full-width">
-        <Collapse className="full-width" bordered>
-          {skills.map((skill, index) => (
-            <Panel
-              forceRender={true}
-              key={index + 1}
-              className="widget-skill-panel"
-              header={
-                <>
-                  <div className="widget-skill-name">
-                    {skill.skillName || "(Not specified)"}
-                  </div>
-                  <Text className="widget-skill-level" type="secondary">
-                    {SkillLevelType[skill.level]}&nbsp;
-                  </Text>
-                </>
-              }
-            >
-              <EditableSkill
-                key={skill.id}
-                skill={skill}
-                onSkillChanged={(skill) => onSkillPropertyChanged(index, skill)}
-              />
-            </Panel>
-          ))}
-        </Collapse>
-      </Row>
-    </>
+    <div className="widget-skill-list">
+      <Button
+        onClick={addSkill}
+        type="link"
+        className="widget-skill-list-add-button"
+      >
+        <PlusOutlined />
+        Add skill
+      </Button>
+      {skills.map((skill, index) => (
+        <Row className="full-width" align="middle">
+          <Col span={23}>
+            <EditableSkill
+              onSkillChanged={(_skill) => onSkillPropertyChanged(index, _skill)}
+              skill={skill}
+              key={skill.id}
+            />
+          </Col>
+          <Col span={1}>
+            <Button
+              type="text"
+              shape="circle"
+              icon={<DeleteOutlined />}
+              size="small"
+              onClick={() => onSkillDeleted(index)}
+            />
+          </Col>
+        </Row>
+      ))}
+    </div>
   );
 };

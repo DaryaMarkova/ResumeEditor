@@ -4,7 +4,6 @@ import { Row, Col, Typography, Divider } from "antd";
 import { IProfile } from "../../types";
 import { DispatchAction } from "../../store";
 import { Input, ImagePicker } from "../../shared";
-import { EditableSkill } from "../../shared/Skill/Skill";
 import { SkillList } from "../SkillList/SkillList";
 import "./Editor.css";
 
@@ -53,11 +52,10 @@ export const Editor = () => {
       <Divider />
       <Row gutter={24} className="resume-editor-row">
         <Col span={24}>
-          <Paragraph className="resume-editor-section-header" strong>
-            Personal Details
-          </Paragraph>
+          <Text className="resume-editor-subtitle" strong>
+            Personal details
+          </Text>
         </Col>
-
         <Col span={12}>
           <Input
             placeholder="Job Title"
@@ -109,14 +107,15 @@ export const Editor = () => {
           />
         </Col>
       </Row>
-      <Row>
+      <Row gutter={24} className="resume-editor-row">
         <Col span={24}>
-          <Paragraph className="resume-editor-section-header" strong>
+          <Text strong className="resume-editor-subtitle">
             Skills
-          </Paragraph>
+          </Text>
         </Col>
-
-        <SkillList />
+        <Col span={24}>
+          <SkillList />
+        </Col>
       </Row>
     </div>
   );

@@ -3,6 +3,7 @@ import { Typography, Row, Col, Button } from "antd";
 import { EditableInput } from "../Input/Input";
 import { Skill, SkillLevelType } from "../../types";
 import { StarOutlined, StarFilled } from "@ant-design/icons";
+import { Collapse } from "../../shared";
 import "./Skill.css";
 
 export const EditableSkill = (props: {
@@ -47,43 +48,58 @@ export const EditableSkill = (props: {
   }
 
   return (
-    <Row gutter={24}>
-      <Col span={12}>
-        <EditableInput
-          onInputValueChanged={onSkillNameChanged}
-          placeholder="Skill"
-          defaultValue={skill.skillName}
-          bindProperty="skillName"
-        />
-      </Col>
-      <Col>
-        <div style={{ paddingTop: "4px" }}>
-          <Text className="widget-skill-level-text" type="secondary">
-            Level&nbsp;&mdash;&nbsp;
-            {SkillLevelType[skill.level]}
-          </Text>
-          <div className={`widget-skill-level-active-` + skill.level}>
-            {levelNames.map((level, index) => (
-              <Button
-                onClick={() => onSkillLevelChanged(level)}
-                key={index}
-                value={level}
-                size="small"
-                shape="circle"
-                type="text"
-                className="widget-skill-level-icon"
-                icon={
-                  index <= skill.level ? (
-                    <StarFilled style={{ color: "rgb(33, 150, 243)" }} />
-                  ) : (
-                    <StarOutlined style={{ color: "rgb(33, 150, 243)" }} />
-                  )
-                }
-              />
-            ))}
+    <Collapse
+      defaultExpanded={props.skill.isActive}
+      header={
+        <>
+          <div className="widget-skill-name">
+            {skill.skillName || "(Not specified)"}
           </div>
-        </div>
-      </Col>
-    </Row>
+          <Text className="widget-skill-level" type="secondary">
+            {SkillLevelType[skill.level]}&nbsp;
+          </Text>
+        </>
+      }
+      content={
+        <Row gutter={24} className="full-width">
+          <Col span={12}>
+            <EditableInput
+              onInputValueChanged={onSkillNameChanged}
+              placeholder="Skill"
+              defaultValue={skill.skillName}
+              bindProperty="skillName"
+            />
+          </Col>
+          <Col span={12}>
+            <div style={{ paddingTop: "4px" }}>
+              <Text className="widget-skill-level-text" type="secondary">
+                Level&nbsp;&mdash;&nbsp;
+                {SkillLevelType[skill.level]}
+              </Text>
+              <div className={`widget-skill-level-active-` + skill.level}>
+                {levelNames.map((level, index) => (
+                  <Button
+                    onClick={() => onSkillLevelChanged(level)}
+                    key={index}
+                    value={level}
+                    size="small"
+                    shape="circle"
+                    type="text"
+                    className="widget-skill-level-icon"
+                    icon={
+                      index <= skill.level ? (
+                        <StarFilled style={{ color: "rgb(33, 150, 243)" }} />
+                      ) : (
+                        <StarOutlined style={{ color: "rgb(33, 150, 243)" }} />
+                      )
+                    }
+                  />
+                ))}
+              </div>
+            </div>
+          </Col>
+        </Row>
+      }
+    />
   );
 };

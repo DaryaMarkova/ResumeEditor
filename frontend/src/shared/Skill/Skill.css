@@ -2,13 +2,11 @@
   margin-bottom: 5px;
 }
 .widget-skill-name {
-  margin-left: -6px;
   font-size: 0.9em;
   font-weight: 500;
 }
 .widget-skill-level {
   font-size: 0.9em;
-  margin-left: -4px;
 }
 
 .widget-skill .ant-collapse-content-box {
