@@ -25,6 +25,7 @@ const initialState: TStore = {
     firstName: "",
     lastName: "",
     hasAvatar: false,
+    skills: [],
   },
 };
 

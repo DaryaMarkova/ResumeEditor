@@ -4,6 +4,7 @@ export interface IProfile {
   lastName?: string;
   email?: string;
   phone?: string;
+  skills?: Skill[];
   hasAvatar?: boolean;
 }
 

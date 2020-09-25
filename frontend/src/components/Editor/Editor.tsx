@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useStore } from "../../utils/useStore";
 import { Row, Col, Typography, Divider } from "antd";
-import { IProfile } from "../../types";
+import { IProfile, Skill } from "../../types";
 import { DispatchAction } from "../../store";
 import { Input, ImagePicker } from "../../shared";
 import { SkillList } from "../SkillList/SkillList";
@@ -12,7 +12,7 @@ export const Editor = () => {
   const [profile, setProfile] = useState<IProfile>(store.profile);
 
   const onProfileChanged = (
-    value: string,
+    value: string | Skill[],
     property: keyof IProfile | string
   ) => {
     const updatedProfile = { ...profile, [property]: value };
@@ -114,7 +114,7 @@ export const Editor = () => {
           </Text>
         </Col>
         <Col span={24}>
-          <SkillList />
+          <SkillList onSkillListChanged={onProfileChanged} />
         </Col>
       </Row>
     </div>

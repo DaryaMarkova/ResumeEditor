@@ -1,14 +1,21 @@
-import React, { useState } from "react";
-import { Button, Row, Col, Typography } from "antd";
+import React, { useState, useEffect } from "react";
+import { Button, Row, Col } from "antd";
 import { PlusOutlined, DeleteOutlined } from "@ant-design/icons";
 import { Skill, SkillLevelType } from "../../types";
 import { EditableSkill } from "../../shared/Skill/Skill";
 import "./SkillList.css";
 
-export const SkillList = () => {
+export const SkillList = (props: {
+  onSkillListChanged: (skills: Skill[], property: string) => void;
+}) => {
   const [skills, setSkills] = useState<Array<Skill & { isActive?: boolean }>>(
     []
   );
+  const { onSkillListChanged } = props;
+
+  useEffect(() => {
+    onSkillListChanged(skills, "skills");
+  }, [skills]);
 
   const addSkill = () => {
     setSkills([
@@ -46,7 +53,7 @@ export const SkillList = () => {
         Add skill
       </Button>
       {skills.map((skill, index) => (
-        <Row className="full-width" align="middle">
+        <Row key={skill.id} className="full-width" align="middle">
           <Col span={23}>
             <EditableSkill
               onSkillChanged={(_skill) => onSkillPropertyChanged(index, _skill)}

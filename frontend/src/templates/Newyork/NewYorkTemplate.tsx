@@ -121,6 +121,47 @@ export const NewYorkTemplate: FunctionComponent<TemplateProps> = ({
               >
                 {profile.email || ProfileDefaults.email}
               </p>
+              <p
+                style={{
+                  marginBottom: "4px",
+                  marginTop: "24px",
+                  fontSize: "smaller",
+                }}
+              >
+                <b>Skills</b>
+              </p>
+              {/* Skills */}
+              {profile.skills &&
+                profile.skills
+                  .filter((it) => !!it.skillName)
+                  .map((skill) => (
+                    <p style={{ marginBottom: "2px" }}>
+                      <span style={{ fontSize: "small" }}>
+                        {skill.skillName}
+                      </span>
+                      <div
+                        style={{
+                          position: "relative",
+                          width: "100px",
+                          height: "2px",
+                          background: "rgb(242, 245, 250)",
+                          borderRadius: "2px",
+                          marginTop: "2px",
+                        }}
+                      >
+                        <div
+                          className="template-newyork-skill-level"
+                          style={{
+                            position: "absolute",
+                            width: `${20 * (skill.level + 1)}px`,
+                            height: "2px",
+                            top: "-1px",
+                            background: "#1890ff",
+                          }}
+                        ></div>
+                      </div>
+                    </p>
+                  ))}
             </td>
           </tr>
         </table>
