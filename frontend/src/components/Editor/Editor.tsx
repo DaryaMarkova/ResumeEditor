@@ -1,9 +1,10 @@
-import React, { useState, RefObject } from "react";
+import React, { useState } from "react";
 import { useStore } from "../../utils/useStore";
 import { Row, Col, Typography, Divider } from "antd";
 import { IProfile } from "../../types";
 import { DispatchAction } from "../../store";
-import { Input } from "../../shared";
+import { Input, ImagePicker } from "../../shared";
+import { SkillList } from "../SkillList/SkillList";
 import "./Editor.css";
 
 export const Editor = () => {
@@ -23,7 +24,21 @@ export const Editor = () => {
     });
   };
 
-  const { Text, Title } = Typography;
+  const onImageChoosen = () => {
+    dispatch({
+      type: DispatchAction.setAvatarShownAction,
+      payload: true,
+    });
+  };
+
+  const onImageReseted = () => {
+    dispatch({
+      type: DispatchAction.setAvatarShownAction,
+      payload: false,
+    });
+  };
+
+  const { Text, Title, Paragraph } = Typography;
 
   return (
     <div className="resume-editor">
@@ -35,14 +50,24 @@ export const Editor = () => {
         Summary
       </Title>
       <Divider />
-      <Text strong>Personal Details</Text>
       <Row gutter={24} className="resume-editor-row">
+        <Col span={24}>
+          <Text className="resume-editor-subtitle" strong>
+            Personal details
+          </Text>
+        </Col>
         <Col span={12}>
           <Input
             placeholder="Job Title"
             defaultValue={profile.jobTitle}
             bindProperty={"jobTitle"}
             onInputValueChanged={onProfileChanged}
+          />
+        </Col>
+        <Col span={12}>
+          <ImagePicker
+            onImageChoosen={onImageChoosen}
+            onImageReseted={onImageReseted}
           />
         </Col>
       </Row>
@@ -80,6 +105,16 @@ export const Editor = () => {
             bindProperty={"phone"}
             onInputValueChanged={onProfileChanged}
           />
+        </Col>
+      </Row>
+      <Row gutter={24} className="resume-editor-row">
+        <Col span={24}>
+          <Text strong className="resume-editor-subtitle">
+            Skills
+          </Text>
+        </Col>
+        <Col span={24}>
+          <SkillList />
         </Col>
       </Row>
     </div>

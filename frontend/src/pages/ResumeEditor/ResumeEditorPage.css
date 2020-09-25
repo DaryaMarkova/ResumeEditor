@@ -1,39 +1,48 @@
+.resume-editor-page {
+  width: 100%;
+  display: flex;
+}
+
 .resume-editor-page-sider {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 50%;
-  height: 100%;
+  max-width: 960px;
+  flex: 1;
   background-color: #fff;
+  height: 100vh;
 }
 
 .resume-editor-page-content {
-  position: absolute;
-  top: 0;
-  left: 50%;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
   width: 50%;
-  height: 100%;
+  min-width: calc(100% - 960px);
+  flex: 1;
+  height: 100vh;
   background-color: rgb(122, 133, 153);
 }
 
 .resume-editor-page-sheet {
   position: relative;
-  width: 640px;
-  height: 900px;
-  margin: 0px auto;
+  width: 620px;
+  height: 877px;
+  margin: auto;
+  margin-top: -40px;
   background-color: #fff;
   border-radius: 4px;
-  transform: scale(0.76) translateY(-60px);
+  transform: scale(0.8);
 }
 
 .resume-editor-page-tools {
   position: absolute;
-  height: 20px;
-  top: calc(100% - 46px);
-  left: 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  bottom: -40px;
   width: 100%;
-  text-align: center;
+  left: 0;
 }
+
 .resume-editor-page-link-to-templates {
   color: #fff;
 }

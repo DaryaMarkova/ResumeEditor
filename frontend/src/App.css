@@ -24,3 +24,6 @@ body {
 .text-upper-case {
   text-transform: uppercase;
 }
+.full-width {
+  width: 100%;
+}

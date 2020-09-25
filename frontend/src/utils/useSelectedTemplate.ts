@@ -11,14 +11,15 @@ import {
 const getSelectedTemplate = (
   eTemplate: ETemplate
 ): FunctionComponent<TemplateProps> => {
-  switch (eTemplate) {
-    case ETemplate.NewYork:
-      return NewYorkTemplate;
-    case ETemplate.Stockholm:
-      return StockholmTemplate;
-    default:
-      return StockholmTemplate;
-  }
+  return NewYorkTemplate;
+  // switch (eTemplate) {
+  //   case ETemplate.NewYork:
+  //     return NewYorkTemplate;
+  //   case ETemplate.Stockholm:
+  //     return StockholmTemplate;
+  //   default:
+  //     return StockholmTemplate;
+  // }
 };
 
 export function useSelectedTemplate(): FunctionComponent<TemplateProps> {

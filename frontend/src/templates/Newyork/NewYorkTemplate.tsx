@@ -23,17 +23,20 @@ export const NewYorkTemplate: FunctionComponent<TemplateProps> = ({
             <td>
               <table>
                 <tr>
-                  <td>
-                    <img
-                      style={{
-                        width: "70px",
-                        height: "auto",
-                        borderRadius: "6px",
-                      }}
-                      src="https://klike.net/uploads/posts/2019-06/1561009159_3.jpg"
-                    />
-                  </td>
-                  <td valign="middle" style={{ paddingLeft: "10px" }}>
+                  {profile.hasAvatar && (
+                    <td style={{ paddingRight: "10px" }}>
+                      <img
+                        style={{
+                          width: "70px",
+                          height: "auto",
+                          borderRadius: "6px",
+                        }}
+                        src="http://localhost:3005/assets/avatar.jpg"
+                      />
+                    </td>
+                  )}
+
+                  <td valign="middle">
                     <h2 style={{ padding: 0, margin: 0, fontWeight: 600 }}>
                       {profile.firstName || ProfileDefaults.firstName}&nbsp;
                       {profile.lastName || ProfileDefaults.lastName}
@@ -69,9 +72,23 @@ export const NewYorkTemplate: FunctionComponent<TemplateProps> = ({
                   fontSize: "smaller",
                 }}
               >
-                Enthusiastic Software Engineer | Front End Developer with 4
-                years of experience and curious admirer of Data Structures and
-                Algorithms
+                Повседневная практика показывает, что социально-экономическое
+                развитие в значительной степени обуславливает создание модели
+                развития! Значимость этих проблем настолько очевидна, что
+                выбранный нами инновационный путь в значительной степени
+                обуславливает создание форм воздействия? Значимость этих проблем
+                настолько очевидна, что выбранный нами инновационный путь
+                представляет собой интересный эксперимент проверки форм
+                воздействия? Задача организации, в особенности же выбранный нами
+                инновационный путь создаёт предпосылки качественно новых шагов
+                для форм воздействия? Равным образом реализация намеченного
+                плана развития требует определения и уточнения ключевых
+                компонентов планируемого обновления? С другой стороны социально-
+                экономическое развитие позволяет выполнить важнейшие задания по
+                разработке системы масштабного изменения ряда параметров. Задача
+                организации, в особенности же социально-экономическое развитие
+                обеспечивает широкому кругу специалистов участие в формировании
+                экономической целесообразности принимаемых решений.
               </p>
             </td>
             <td

@@ -4,7 +4,23 @@ export interface IProfile {
   lastName?: string;
   email?: string;
   phone?: string;
+  hasAvatar?: boolean;
 }
+
+export enum SkillLevelType {
+  Novice,
+  Beginner,
+  Skillfull,
+  Experienced,
+  Expert,
+}
+
+export interface Skill {
+  level: SkillLevelType;
+  skillName: string;
+  id: number;
+}
+
 export const ProfileDefaults = {
   jobTitle: "Job title",
   firstName: "Firstname",
