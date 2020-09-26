@@ -1,6 +1,7 @@
 import React, { FunctionComponent } from "react";
 import { TemplateProps } from "../index";
 import { ProfileDefaults } from "../../types";
+import classNames from "classnames";
 import "./NewYorkTemplate.css";
 
 export const NewYorkTemplate: FunctionComponent<TemplateProps> = ({
@@ -26,6 +27,7 @@ export const NewYorkTemplate: FunctionComponent<TemplateProps> = ({
                   {profile.hasAvatar && (
                     <td style={{ paddingRight: "10px" }}>
                       <img
+                        alt="avatar"
                         style={{
                           width: "70px",
                           height: "auto",
@@ -134,8 +136,8 @@ export const NewYorkTemplate: FunctionComponent<TemplateProps> = ({
               {profile.skills &&
                 profile.skills
                   .filter((it) => !!it.skillName)
-                  .map((skill) => (
-                    <p style={{ marginBottom: "2px" }}>
+                  .map((skill, index) => (
+                    <div key={skill.id} style={{ marginBottom: "2px" }}>
                       <span style={{ fontSize: "small" }}>
                         {skill.skillName}
                       </span>
@@ -150,17 +152,20 @@ export const NewYorkTemplate: FunctionComponent<TemplateProps> = ({
                         }}
                       >
                         <div
-                          className="template-newyork-skill-level"
+                          className={classNames(
+                            "template-newyork-skill-level",
+                            `skill-level-${skill.level + 1}-star`
+                          )}
                           style={{
                             position: "absolute",
-                            width: `${20 * (skill.level + 1)}px`,
+                            width: `${(skill.level + 1) * 20}px`,
                             height: "2px",
                             top: "-1px",
                             background: "#1890ff",
                           }}
                         ></div>
                       </div>
-                    </p>
+                    </div>
                   ))}
             </td>
           </tr>

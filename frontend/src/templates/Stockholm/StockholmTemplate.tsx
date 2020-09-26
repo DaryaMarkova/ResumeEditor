@@ -14,6 +14,7 @@ export const StockholmTemplate: FunctionComponent<TemplateProps> = ({
       <Row gutter={10} align="middle">
         <Col>
           <img
+            alt="avatar"
             className="avatar"
             width={80}
             src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
