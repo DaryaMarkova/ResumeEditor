@@ -33,7 +33,6 @@ export function ResumeEditorPage() {
       <div className="resume-editor-page-content">
         <div className="resume-editor-page-sheet">
           <Viewer templateRef={templateRef} />
-
           <div className="resume-editor-page-tools">
             <Link
               className="resume-editor-page-link-to-templates"
