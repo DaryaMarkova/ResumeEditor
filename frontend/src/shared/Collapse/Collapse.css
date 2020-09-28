@@ -10,13 +10,7 @@
   padding: 8px 12px;
 }
 
-/* .widget-collapse-content {
-  display: none;
-  padding: 0;
-  opacity: 0;
-} */
 .widget-collapse-content {
-  /* display: none; */
   padding: 0;
   opacity: 0;
 }
@@ -27,7 +21,6 @@
 }
 
 .widget-collapse.expanded > .widget-collapse-content {
-  /* display: block; */
   padding: 8px 12px;
   padding-bottom: 16px;
   border-top: none;

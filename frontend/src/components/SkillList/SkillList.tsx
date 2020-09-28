@@ -4,6 +4,8 @@ import { PlusOutlined, DeleteOutlined } from "@ant-design/icons";
 import { Skill, SkillLevelType } from "../../types";
 import { EditableSkill } from "../../shared/Skill/Skill";
 import "./SkillList.css";
+import { DraggableList } from "../../shared/DraggableList/DraggableList";
+import { NONAME } from "dns";
 
 export const SkillList = (props: {
   onSkillListChanged: (skills: Skill[], property: string) => void;
@@ -42,6 +44,31 @@ export const SkillList = (props: {
     // setSkills(skills.filter((skill) => skill.id !== id));
   };
 
+  const getRenderedSkill = (skill: Skill) => {
+    const index = skills.indexOf(skill);
+
+    return (
+      <Row key={skill.id} className="full-width" align="middle">
+        <Col span={23}>
+          <EditableSkill
+            onSkillChanged={(_skill) => onSkillPropertyChanged(index, _skill)}
+            skill={skill}
+            key={skill.id}
+          />
+        </Col>
+        <Col span={1}>
+          <Button
+            type="text"
+            shape="circle"
+            icon={<DeleteOutlined />}
+            size="small"
+            onClick={() => onSkillDeleted(index)}
+          />
+        </Col>
+      </Row>
+    );
+  };
+
   return (
     <div className="widget-skill-list">
       <Button
@@ -52,26 +79,17 @@ export const SkillList = (props: {
         <PlusOutlined />
         Add skill
       </Button>
-      {skills.map((skill, index) => (
-        <Row key={skill.id} className="full-width" align="middle">
-          <Col span={23}>
-            <EditableSkill
-              onSkillChanged={(_skill) => onSkillPropertyChanged(index, _skill)}
-              skill={skill}
-              key={skill.id}
-            />
-          </Col>
-          <Col span={1}>
-            <Button
-              type="text"
-              shape="circle"
-              icon={<DeleteOutlined />}
-              size="small"
-              onClick={() => onSkillDeleted(index)}
-            />
-          </Col>
-        </Row>
-      ))}
+
+      <DraggableList
+        items={skills}
+        onItemsReordered={(items) => setSkills(items)}
+        getRenderedItem={getRenderedSkill}
+        getItemStyle={(isDragging: boolean, draggableStyle: any) => {
+          return {
+            ...draggableStyle,
+          };
+        }}
+      />
     </div>
   );
 };

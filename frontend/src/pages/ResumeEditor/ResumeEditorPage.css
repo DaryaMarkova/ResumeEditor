@@ -32,11 +32,9 @@
   position: fixed;
   top: -40px;
   left: calc(360px + 50% - 310px);
-
   width: 620px;
   height: 877px;
   transform: scale(0.8);
-
   background-color: #fff;
   border-radius: 4px;
 }
