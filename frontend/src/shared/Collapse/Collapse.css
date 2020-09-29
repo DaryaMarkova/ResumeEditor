@@ -30,7 +30,7 @@
   opacity: 1;
 }
 .widget-collapse.shortened > .widget-collapse-content {
-  animation: disappearAnimation 0.2s;
+  /* animation: disappearAnimation 0.2s; */
   height: 0;
 }
 

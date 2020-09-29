@@ -1,3 +1,4 @@
 .widget-skill-list-add-button {
-  padding-left: 0;
+  margin-left: -12px;
+  margin-top: 6px;
 }

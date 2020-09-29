@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Button, Row, Col } from "antd";
+import { Button, Row, Col, Switch as Switcher, Typography } from "antd";
 import { PlusOutlined, DeleteOutlined } from "@ant-design/icons";
 import { Skill, SkillLevelType } from "../../types";
 import { EditableSkill } from "../../shared/Skill/Skill";
-import "./SkillList.css";
 import { DraggableList } from "../../shared/DraggableList/DraggableList";
-import { NONAME } from "dns";
+import "./SkillList.css";
 
 export const SkillList = (props: {
   onSkillListChanged: (skills: Skill[], property: string) => void;
@@ -69,16 +68,14 @@ export const SkillList = (props: {
     );
   };
 
+  const { Text, Paragraph } = Typography;
+
   return (
     <div className="widget-skill-list">
-      <Button
-        onClick={addSkill}
-        type="link"
-        className="widget-skill-list-add-button"
-      >
-        <PlusOutlined />
-        Add skill
-      </Button>
+      <Paragraph>
+        <Switcher size={"small"} />
+        &nbsp;Don't show experience level
+      </Paragraph>
 
       <DraggableList
         items={skills}
@@ -90,6 +87,14 @@ export const SkillList = (props: {
           };
         }}
       />
+      <Button
+        type="link"
+        onClick={addSkill}
+        className="widget-skill-list-add-button"
+      >
+        <PlusOutlined />
+        Add skill
+      </Button>
     </div>
   );
 };
