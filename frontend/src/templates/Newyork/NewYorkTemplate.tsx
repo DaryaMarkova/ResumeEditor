@@ -1,6 +1,7 @@
 import React, { FunctionComponent } from "react";
 import { TemplateProps } from "../index";
 import { ProfileDefaults } from "../../types";
+import classNames from "classnames";
 import "./NewYorkTemplate.css";
 
 export const NewYorkTemplate: FunctionComponent<TemplateProps> = ({
@@ -26,6 +27,7 @@ export const NewYorkTemplate: FunctionComponent<TemplateProps> = ({
                   {profile.hasAvatar && (
                     <td style={{ paddingRight: "10px" }}>
                       <img
+                        alt="avatar"
                         style={{
                           width: "70px",
                           height: "auto",
@@ -70,25 +72,10 @@ export const NewYorkTemplate: FunctionComponent<TemplateProps> = ({
                   paddingRight: "16px",
                   marginTop: "10px",
                   fontSize: "smaller",
+                  whiteSpace: "pre",
                 }}
               >
-                Повседневная практика показывает, что социально-экономическое
-                развитие в значительной степени обуславливает создание модели
-                развития! Значимость этих проблем настолько очевидна, что
-                выбранный нами инновационный путь в значительной степени
-                обуславливает создание форм воздействия? Значимость этих проблем
-                настолько очевидна, что выбранный нами инновационный путь
-                представляет собой интересный эксперимент проверки форм
-                воздействия? Задача организации, в особенности же выбранный нами
-                инновационный путь создаёт предпосылки качественно новых шагов
-                для форм воздействия? Равным образом реализация намеченного
-                плана развития требует определения и уточнения ключевых
-                компонентов планируемого обновления? С другой стороны социально-
-                экономическое развитие позволяет выполнить важнейшие задания по
-                разработке системы масштабного изменения ряда параметров. Задача
-                организации, в особенности же социально-экономическое развитие
-                обеспечивает широкому кругу специалистов участие в формировании
-                экономической целесообразности принимаемых решений.
+                {profile.summary}
               </p>
             </td>
             <td
@@ -121,6 +108,50 @@ export const NewYorkTemplate: FunctionComponent<TemplateProps> = ({
               >
                 {profile.email || ProfileDefaults.email}
               </p>
+              <p
+                style={{
+                  marginBottom: "4px",
+                  marginTop: "24px",
+                  fontSize: "smaller",
+                }}
+              >
+                {profile.skills && profile.skills.length > 0 && <b>Skills</b>}
+              </p>
+              {/* Skills */}
+              {profile.skills &&
+                profile.skills
+                  .filter((it) => !!it.skillName)
+                  .map((skill, index) => (
+                    <div key={skill.id} style={{ marginBottom: "2px" }}>
+                      <span style={{ fontSize: "small" }}>
+                        {skill.skillName}
+                      </span>
+                      <div
+                        style={{
+                          position: "relative",
+                          width: "100px",
+                          height: "2px",
+                          background: "rgb(242, 245, 250)",
+                          borderRadius: "2px",
+                          marginTop: "2px",
+                        }}
+                      >
+                        <div
+                          className={classNames(
+                            "template-newyork-skill-level",
+                            `skill-level-${skill.level + 1}-star`
+                          )}
+                          style={{
+                            position: "absolute",
+                            width: `${(skill.level + 1) * 20}px`,
+                            height: "2px",
+                            top: "-1px",
+                            background: "#1890ff",
+                          }}
+                        ></div>
+                      </div>
+                    </div>
+                  ))}
             </td>
           </tr>
         </table>

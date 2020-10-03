@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Typography, Row, Col, Button } from "antd";
-import { EditableInput } from "../Input/Input";
+import { EditableInput } from "../../shared/Input/Input";
 import { Skill, SkillLevelType } from "../../types";
 import { StarOutlined, StarFilled } from "@ant-design/icons";
 import { Collapse } from "../../shared";

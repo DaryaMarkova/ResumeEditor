@@ -24,3 +24,23 @@
 .template-newyork-phone {
   margin-left: 12px;
 }
+.template-newyork-skill-level.skill-level-1-star {
+  width: 20px;
+  transition: 1s;
+}
+.template-newyork-skill-level.skill-level-2-star {
+  width: 40px;
+  transition: 1s;
+}
+.template-newyork-skill-level.skill-level-3-star {
+  width: 60px;
+  transition: 1s;
+}
+.template-newyork-skill-level.skill-level-4-star {
+  width: 80px;
+  transition: 1s;
+}
+.template-newyork-skill-level.skill-level-5-star {
+  width: 100px;
+  transition: 1s;
+}

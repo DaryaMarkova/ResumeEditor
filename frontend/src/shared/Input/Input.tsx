@@ -16,7 +16,7 @@ export const EditableInput = (props: {
     onInputValueChanged,
   } = props;
   return (
-    <>
+    <div className="widget-input">
       <Text className="widget-input-label" type="secondary">
         {placeholder}
       </Text>
@@ -27,6 +27,7 @@ export const EditableInput = (props: {
           onInputValueChanged(event.target.value, bindProperty)
         }
       />
-    </>
+      <div className="widget-input-bar"></div>
+    </div>
   );
 };

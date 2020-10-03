@@ -1,12 +1,7 @@
 import { useState, useEffect, useRef, FunctionComponent } from "react";
 import { store$ } from "../store";
 import { Subscription } from "rxjs";
-import {
-  ETemplate,
-  NewYorkTemplate,
-  TemplateProps,
-  StockholmTemplate,
-} from "../templates";
+import { ETemplate, NewYorkTemplate, TemplateProps } from "../templates";
 
 const getSelectedTemplate = (
   eTemplate: ETemplate

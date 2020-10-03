@@ -68,7 +68,11 @@ export const ImagePicker = (props: {
           </svg>
         </div>
         {imageSource && (
-          <img className="widget-image-picker-avatar" src={imageSource} />
+          <img
+            alt="preview"
+            className="widget-image-picker-avatar"
+            src={imageSource}
+          />
         )}
         <input
           onInput={onImageSelected}

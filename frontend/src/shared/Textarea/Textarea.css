@@ -1,7 +1,7 @@
-.widget-input {
+.widget-textarea {
   position: relative;
 }
-.widget-input-text ~ .widget-input-bar {
+.widget-textarea-text ~ .widget-textarea-bar {
   position: absolute;
   left: calc(50% - 5px);
   bottom: -2px;
@@ -11,29 +11,26 @@
   content: "";
   visibility: hidden;
 }
-.widget-input-text:focus ~ .widget-input-bar {
+.widget-textarea-text:focus ~ .widget-textarea-bar {
   left: 0px;
   width: 100%;
   height: 1px;
   visibility: visible;
   transition: 0.3s ease-out;
 }
-.widget-input-text {
+.widget-textarea-text {
   background-color: rgb(242, 245, 250);
   outline: none;
   border: none;
   border-radius: 3px 3px 0px 0px;
   /* border-bottom: 1px solid rgb(242, 245, 250); */
 }
-.widget-input-text::before {
-  content: "&";
-}
-.widget-input-text:focus {
+.widget-textarea-text:focus {
   outline: none;
   box-shadow: none;
   /* border-bottom: 1px solid rgb(33, 150, 243); */
 }
-.widget-input-label {
+.widget-textarea-label {
   margin-left: 2px;
   font-size: 10px;
 }

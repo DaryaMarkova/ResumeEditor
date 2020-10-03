@@ -18,9 +18,15 @@ export const Collapse = (props: {
 
   return (
     <div
-      className={classNames("widget-collapse full-width", {
-        expanded: expanded,
-      })}
+      className={classNames(
+        "widget-collapse full-width",
+        {
+          expanded: expanded,
+        },
+        {
+          shortened: !expanded,
+        }
+      )}
     >
       <div className={classNames("widget-collapse-header bordered")}>
         <Row align="middle">

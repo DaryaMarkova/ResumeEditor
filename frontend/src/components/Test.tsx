@@ -1,38 +1,38 @@
-import React, { useRef, useEffect, RefObject } from "react";
+import React, { useState, useEffect } from "react";
+import { DraggableList } from "../shared/DraggableList/DraggableList";
 
-export const Test = (props: { componentRef: RefObject<HTMLDivElement> }) => {
-  // const componentRef = useRef<HTMLDivElement>(null);
+// https://codesandbox.io/s/k260nyxq9v?file=/index.js
+export const Test = () => {
+  const [items, setItems] = useState<any[]>([]);
+  const getItemStyle = (isDragging: boolean, draggableStyle: any) => ({
+    padding: "16px",
+    border: "1px solid red",
+    background: isDragging ? "lightgreen" : "grey",
+    ...draggableStyle,
+  });
 
-  // useEffect(() => {
-  //   console.log((props.componentRef.current as HTMLDivElement)!.innerHTML);
-  // }, []);
+  const getListStyle = (isDraggingOver: boolean) => ({
+    background: isDraggingOver ? "lightblue" : "lightgrey",
+    padding: "8px",
+    margin: "16px 24px",
+    width: 250,
+  });
+
+  useEffect(() => {
+    setItems(
+      Array.from({ length: 5 }, (v, k) => k).map((k) => ({
+        id: `item-${k}`,
+        content: `item ${k}`,
+      }))
+    );
+  }, []);
 
   return (
-    <div ref={props.componentRef}>
-      <div
-        style={{
-          border: "1px dotted blue",
-          padding: "16px",
-          backgroundColor: "yellow",
-        }}
-      >
-        <h2>Test component</h2>
-        <div style={{ display: "-webkit-flex", WebkitAlignItems: "center" }}>
-          <div style={{ width: "30%", border: "1px solid red" }}>
-            <img
-              style={{ width: "100px", height: "100px" }}
-              src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
-            />
-            Darya
-          </div>
-          <div style={{ width: "30%", border: "1px solid green" }}>Markova</div>
-        </div>
-        <ul>
-          <li>1</li>
-          <li>2</li>
-          <li>3</li>
-        </ul>
-      </div>
-    </div>
+    <DraggableList
+      items={items}
+      onItemsReordered={(items) => setItems(items)}
+      getRenderedItem={(item) => <div>{item.content}</div>}
+      getItemStyle={getItemStyle}
+    />
   );
 };

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useStore } from "../../utils/useStore";
 import { Row, Col, Typography, Divider } from "antd";
-import { IProfile } from "../../types";
+import { IProfile, Skill } from "../../types";
 import { DispatchAction } from "../../store";
-import { Input, ImagePicker } from "../../shared";
-import { SkillList } from "../SkillList/SkillList";
+import { Input, ImagePicker, TextArea } from "../../shared";
+import { SkillList } from "../../components";
 import "./Editor.css";
 
 export const Editor = () => {
@@ -12,9 +12,13 @@ export const Editor = () => {
   const [profile, setProfile] = useState<IProfile>(store.profile);
 
   const onProfileChanged = (
-    value: string,
-    property: keyof IProfile | string
+    value: string | boolean | Skill[],
+    property?: keyof IProfile | string
   ) => {
+    if (!property) {
+      return;
+    }
+
     const updatedProfile = { ...profile, [property]: value };
     setProfile(updatedProfile);
 
@@ -24,21 +28,7 @@ export const Editor = () => {
     });
   };
 
-  const onImageChoosen = () => {
-    dispatch({
-      type: DispatchAction.setAvatarShownAction,
-      payload: true,
-    });
-  };
-
-  const onImageReseted = () => {
-    dispatch({
-      type: DispatchAction.setAvatarShownAction,
-      payload: false,
-    });
-  };
-
-  const { Text, Title, Paragraph } = Typography;
+  const { Text, Title } = Typography;
 
   return (
     <div className="resume-editor">
@@ -66,8 +56,23 @@ export const Editor = () => {
         </Col>
         <Col span={12}>
           <ImagePicker
-            onImageChoosen={onImageChoosen}
-            onImageReseted={onImageReseted}
+            onImageChoosen={() => onProfileChanged(true, "hasAvatar")}
+            onImageReseted={() => onProfileChanged(false, "hasAvatar")}
+          />
+        </Col>
+      </Row>
+      <Row gutter={24} className="resume-editor-row">
+        <Col span={24}>
+          <Text className="resume-editor-subtitle" strong>
+            Professional summary
+          </Text>
+        </Col>
+        <Col span={24}>
+          <TextArea
+            placeholder="Include 2-3 clear sentences about your overall experience"
+            defaultValue={profile.summary}
+            bindProperty={"summary"}
+            onTextareaValueChanged={onProfileChanged}
           />
         </Col>
       </Row>
@@ -114,7 +119,7 @@ export const Editor = () => {
           </Text>
         </Col>
         <Col span={24}>
-          <SkillList />
+          <SkillList onSkillListChanged={onProfileChanged} />
         </Col>
       </Row>
     </div>
