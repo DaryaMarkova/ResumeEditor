@@ -3,7 +3,7 @@ import { useStore } from "../../utils/useStore";
 import { Row, Col, Typography, Divider } from "antd";
 import { IProfile, Skill } from "../../types";
 import { DispatchAction } from "../../store";
-import { Input, ImagePicker } from "../../shared";
+import { Input, ImagePicker, TextArea } from "../../shared";
 import { SkillList } from "../../components";
 import "./Editor.css";
 
@@ -13,8 +13,12 @@ export const Editor = () => {
 
   const onProfileChanged = (
     value: string | boolean | Skill[],
-    property: keyof IProfile | string
+    property?: keyof IProfile | string
   ) => {
+    if (!property) {
+      return;
+    }
+
     const updatedProfile = { ...profile, [property]: value };
     setProfile(updatedProfile);
 
@@ -54,6 +58,21 @@ export const Editor = () => {
           <ImagePicker
             onImageChoosen={() => onProfileChanged(true, "hasAvatar")}
             onImageReseted={() => onProfileChanged(false, "hasAvatar")}
+          />
+        </Col>
+      </Row>
+      <Row gutter={24} className="resume-editor-row">
+        <Col span={24}>
+          <Text className="resume-editor-subtitle" strong>
+            Professional summary
+          </Text>
+        </Col>
+        <Col span={24}>
+          <TextArea
+            placeholder="Include 2-3 clear sentences about your overall experience"
+            defaultValue={profile.summary}
+            bindProperty={"summary"}
+            onTextareaValueChanged={onProfileChanged}
           />
         </Col>
       </Row>

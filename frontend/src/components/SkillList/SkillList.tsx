@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Button, Row, Col, Switch as Switcher, Typography } from "antd";
 import { PlusOutlined, DeleteOutlined } from "@ant-design/icons";
 import { Skill, SkillLevelType } from "../../types";
-import { EditableSkill } from "../../shared/Skill/Skill";
+import { EditableSkill } from "../Skill/Skill";
 import { DraggableList } from "../../shared/DraggableList/DraggableList";
 import "./SkillList.css";
 
@@ -74,7 +74,9 @@ export const SkillList = (props: {
     <div className="widget-skill-list">
       <Paragraph>
         <Switcher size={"small"} />
-        &nbsp;Don't show experience level
+        <Text style={{ fontSize: "small" }}>
+          &nbsp;&nbsp;Don't show experience level
+        </Text>
       </Paragraph>
 
       <DraggableList

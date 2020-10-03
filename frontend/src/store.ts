@@ -24,6 +24,7 @@ const initialState: TStore = {
     jobTitle: "",
     firstName: "",
     lastName: "",
+    summary: "",
     hasAvatar: false,
     skills: [],
   },
