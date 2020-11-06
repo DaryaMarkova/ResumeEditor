@@ -1,0 +1,9 @@
+.widget-employmenthistory-title {
+  font-size: 0.9em;
+  font-weight: 500;
+}
+.widget-employmenthistory-dates {
+  font-size: 12px;
+  color: rgb(152, 161, 179);
+  font-weight: 300;
+}

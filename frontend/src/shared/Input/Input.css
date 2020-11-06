@@ -1,12 +1,13 @@
 .widget-input {
   position: relative;
 }
+
 .widget-input-text ~ .widget-input-bar {
   position: absolute;
   left: calc(50% - 5px);
-  bottom: -2px;
+  bottom: -1px;
   width: 10px;
-  height: 2px;
+  height: 3px;
   background: rgb(33, 150, 243);
   content: "";
   visibility: hidden;
@@ -18,21 +19,7 @@
   visibility: visible;
   transition: 0.3s ease-out;
 }
-.widget-input-text {
-  background-color: rgb(242, 245, 250);
-  outline: none;
-  border: none;
-  border-radius: 3px 3px 0px 0px;
-  /* border-bottom: 1px solid rgb(242, 245, 250); */
-}
-.widget-input-text::before {
-  content: "&";
-}
-.widget-input-text:focus {
-  outline: none;
-  box-shadow: none;
-  /* border-bottom: 1px solid rgb(33, 150, 243); */
-}
+
 .widget-input-label {
   margin-left: 2px;
   font-size: 10px;

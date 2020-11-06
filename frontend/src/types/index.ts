@@ -23,6 +23,11 @@ export interface Skill {
   id: number;
 }
 
+export interface EmploymentHistory {
+  jobTitle: string;
+  employer: string;
+}
+
 export const ProfileDefaults = {
   jobTitle: "Job title",
   firstName: "Firstname",
