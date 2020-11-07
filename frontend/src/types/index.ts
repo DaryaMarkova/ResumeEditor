@@ -7,6 +7,7 @@ export interface IProfile {
   phone?: string;
   skills?: Skill[];
   hasAvatar?: boolean;
+  employmentHistory?: EmploymentHistory[];
 }
 
 export enum SkillLevelType {

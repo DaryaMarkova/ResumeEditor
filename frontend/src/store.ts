@@ -27,6 +27,7 @@ const initialState: TStore = {
     summary: "",
     hasAvatar: false,
     skills: [],
+    employmentHistory: [],
   },
 };
 
@@ -45,7 +46,6 @@ export const dispatch = (action: TDispatchAction) => {
         ...store$.value,
         profile: action.payload as IProfile,
       });
-
       return;
     case DispatchAction.setAvatarShownAction:
       const profile = store$.value.profile;

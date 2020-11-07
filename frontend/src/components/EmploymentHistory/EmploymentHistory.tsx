@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Typography, Row, Col } from "antd";
-import { Collapse, Input } from "../../shared";
+import { Collapse, Input, MonthDatePicker } from "../../shared";
 import { EmploymentHistory as Employment } from "../../types";
 import "./EmploymentHistory.css";
 
@@ -59,6 +59,12 @@ export const EmploymentHistory = (props: {
               onInputValueChanged={onEmploymentChanged}
               bindProperty={"employer"}
             />
+          </Col>
+          <Col span={6}>
+            <MonthDatePicker />
+          </Col>
+          <Col span={6}>
+            <MonthDatePicker isEndDate={true} />
           </Col>
         </Row>
       }
