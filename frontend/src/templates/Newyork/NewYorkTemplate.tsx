@@ -81,13 +81,25 @@ export const NewYorkTemplate: FunctionComponent<TemplateProps> = ({
                 {/* TODO: insert icon here */}
                 <b style={{ marginLeft: "16px" }}>Employment History</b>
               </p>
-              <div style={{ marginLeft: "16px" }}>
+              <div style={{ marginLeft: "16px", marginTop: "16px" }}>
                 {(profile.employmentHistory || []).map((history, index) => {
                   return (
                     <div key={index} style={{ marginTop: "4px" }}>
-                      <b style={{ fontSize: "smaller" }}>{history.jobTitle}</b>
+                      <b style={{ fontSize: "small" }}>{history.jobTitle}</b>
                       {history.employer && <b>&nbsp;at&nbsp;</b>}
-                      <b style={{ fontSize: "smaller" }}>{history.employer}</b>
+                      <b style={{ fontSize: "small" }}>{history.employer}</b>
+                      {history.jobTitle && history.employer && history.city && (
+                        <b>,&nbsp;{history.city}</b>
+                      )}
+                      <div
+                        style={{
+                          fontSize: "smaller",
+                          marginTop: "6px",
+                          color: "rgb(152, 161, 179)",
+                        }}
+                      >
+                        {history.startDate}&nbsp;&mdash;&nbsp;{history.endDate}
+                      </div>
                     </div>
                   );
                 })}

@@ -3,6 +3,7 @@ import { EmploymentHistory } from "../EmploymentHistory/EmploymentHistory";
 import { EmploymentHistory as Employment } from "../../types/";
 import { Button, Row, Col } from "antd";
 import { DeleteOutlined, PlusOutlined } from "@ant-design/icons";
+import moment from "moment";
 import "./style.css";
 
 export const EmploymentHistoryList = (props: {
@@ -26,7 +27,13 @@ export const EmploymentHistoryList = (props: {
       ...employmentHistoryList.map((it) => {
         return { ...it, isActive: false };
       }),
-      { jobTitle: "", employer: "", isActive: true },
+      {
+        jobTitle: "",
+        employer: "",
+        isActive: true,
+        startDate: moment().format("MMMM YYYY"),
+        endDate: "Present",
+      },
     ]);
   };
 

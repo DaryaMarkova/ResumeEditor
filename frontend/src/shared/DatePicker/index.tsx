@@ -12,32 +12,39 @@ export const MonthPicker = (props: {
   const [present, setPresent] = useState<boolean>(false);
   const [value, setValue] = useState<Moment | null>(moment());
 
-  // type ?
   const onPickerValueChanged = (value: Moment | null) => {
     setValue(value);
-    // emit values
+
+    if (props.onDateChanged) {
+      props.onDateChanged(moment(value).format("MMMM YYYY"));
+    }
   };
 
   useEffect(() => {
     if (present && datePickerRef && datePickerRef.current) {
       setValue(null);
+
+      if (props.onDateChanged) {
+        props.onDateChanged("Present");
+      }
+
       datePickerRef.current?.blur();
     }
   }, [present]);
 
   return (
     <div className="monthpicker">
-      {present && (
-        <div className="monthpicker__overtext">
+      {/* {present && (
+        <div className="monthpicker__presenttext">
           <span>Present&nbsp;&mdash;&nbsp;</span>
         </div>
-      )}
-
+      )} */}
       <DatePicker
         ref={datePickerRef}
         format="MMM, YYYY"
         picker="month"
         value={value}
+        style={{ width: "120px" }}
         onChange={onPickerValueChanged}
         renderExtraFooter={() => {
           if (!props.isEndDate) {
@@ -57,6 +64,7 @@ export const MonthPicker = (props: {
           );
         }}
       />
+      <div className="monthpicker__bar"></div>
     </div>
   );
 };

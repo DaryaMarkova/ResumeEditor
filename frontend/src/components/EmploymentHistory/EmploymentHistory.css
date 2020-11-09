@@ -7,3 +7,15 @@
   color: rgb(152, 161, 179);
   font-weight: 300;
 }
+.widget-employmenthistory__label {
+  font-size: 10px;
+  color: rgb(152, 161, 179);
+  font-weight: 300;
+  margin-left: 4px;
+}
+.widget-employmenthistory__dates {
+  display: flex;
+}
+.widget-employmenthistory__dates .monthpicker:not(:first-of-type) {
+  margin-left: 10px;
+}

@@ -26,7 +26,6 @@ export const EmploymentHistory = (props: {
     }
 
     props.onEmploymentHistoryChanged({ ...history, [bindProperty]: value });
-    // setHistory({ ...history, [bindProperty]: value });
   };
 
   return (
@@ -43,30 +42,57 @@ export const EmploymentHistory = (props: {
         </>
       }
       content={
-        <Row gutter={24} className="full-width">
-          <Col span={12}>
-            <Input
-              placeholder="Job title"
-              defaultValue={history?.jobTitle}
-              onInputValueChanged={onEmploymentChanged}
-              bindProperty={"jobTitle"}
-            />
-          </Col>
-          <Col span={12}>
-            <Input
-              placeholder="Employer"
-              defaultValue={history?.employer}
-              onInputValueChanged={onEmploymentChanged}
-              bindProperty={"employer"}
-            />
-          </Col>
-          <Col span={6}>
-            <MonthDatePicker />
-          </Col>
-          <Col span={6}>
-            <MonthDatePicker isEndDate={true} />
-          </Col>
-        </Row>
+        <>
+          <Row gutter={[24, 8]} className="full-width">
+            <Col span={12}>
+              <Input
+                placeholder="Job title"
+                defaultValue={history?.jobTitle}
+                onInputValueChanged={onEmploymentChanged}
+                bindProperty={"jobTitle"}
+              />
+            </Col>
+            <Col span={12}>
+              <Input
+                placeholder="Employer"
+                defaultValue={history?.employer}
+                onInputValueChanged={onEmploymentChanged}
+                bindProperty={"employer"}
+              />
+            </Col>
+          </Row>
+          <Row gutter={[24, 8]} className="full-width">
+            <Col span={12}>
+              <Text
+                type="secondary"
+                className="widget-employmenthistory__label"
+              >
+                Start & End Date
+              </Text>
+              <div className="widget-employmenthistory__dates">
+                <MonthDatePicker
+                  onDateChanged={(date) => {
+                    onEmploymentChanged(date, "startDate");
+                  }}
+                />
+                <MonthDatePicker
+                  isEndDate
+                  onDateChanged={(date) => {
+                    onEmploymentChanged(date, "endDate");
+                  }}
+                />
+              </div>
+            </Col>
+            <Col span={12}>
+              <Input
+                placeholder="City"
+                defaultValue={history?.city}
+                onInputValueChanged={onEmploymentChanged}
+                bindProperty={"city"}
+              />
+            </Col>
+          </Row>
+        </>
       }
     ></Collapse>
   );
