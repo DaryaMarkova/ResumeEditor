@@ -30,6 +30,7 @@ export interface EmploymentHistory {
   startDate: string;
   endDate: string;
   city?: string;
+  description?: string;
 }
 
 export const ProfileDefaults = {

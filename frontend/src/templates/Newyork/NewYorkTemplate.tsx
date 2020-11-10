@@ -67,21 +67,39 @@ export const NewYorkTemplate: FunctionComponent<TemplateProps> = ({
                 </svg>
                 <b style={{ marginLeft: "4px" }}>Profile</b>
               </p>
-              <p
+              <div
                 style={{
-                  paddingRight: "16px",
+                  marginLeft: "16px",
+                  marginRight: "16px",
                   marginTop: "10px",
                   fontSize: "smaller",
-                  whiteSpace: "pre",
+                  whiteSpace: "pre-wrap",
                 }}
               >
                 {profile.summary}
+              </div>
+              {/* Employment History */}
+              <p style={{ marginTop: "16px" }}>
+                <svg
+                  width="10pt"
+                  height="10pt"
+                  viewBox="0 0 10 10"
+                  version="1.1"
+                >
+                  <g id="surface1">
+                    <path
+                      stroke="none"
+                      fill-rule="nonzero"
+                      fill="rgb(0%,0%,0%)"
+                      fill-opacity="1"
+                      d="M 8.914062 2.867188 L 6.777344 2.867188 L 6.777344 1.90625 C 6.777344 1.6875 6.597656 1.507812 6.375 1.507812 L 3.625 1.507812 C 3.40625 1.507812 3.226562 1.6875 3.226562 1.90625 L 3.226562 2.867188 L 1.085938 2.867188 C 0.761719 2.871094 0.5 3.132812 0.5 3.457031 L 0.5 8.910156 C 0.5 9.234375 0.761719 9.5 1.085938 9.5 L 8.914062 9.5 C 9.238281 9.5 9.5 9.234375 9.5 8.910156 L 9.5 3.457031 C 9.5 3.132812 9.238281 2.871094 8.914062 2.867188 Z M 3.5 1.90625 C 3.5 1.839844 3.554688 1.785156 3.621094 1.785156 L 6.371094 1.785156 C 6.4375 1.785156 6.492188 1.839844 6.492188 1.90625 L 6.492188 2.867188 L 3.5 2.867188 Z M 1.085938 3.148438 L 8.914062 3.148438 C 9.082031 3.152344 9.21875 3.285156 9.21875 3.453125 L 9.21875 5.355469 L 5.984375 5.355469 L 5.984375 5.148438 C 5.984375 5.074219 5.953125 5 5.902344 4.949219 C 5.847656 4.894531 5.773438 4.867188 5.699219 4.867188 L 4.300781 4.867188 C 4.144531 4.867188 4.019531 4.992188 4.019531 5.148438 L 4.019531 5.359375 L 0.78125 5.359375 L 0.78125 3.460938 C 0.78125 3.378906 0.8125 3.296875 0.871094 3.242188 C 0.925781 3.183594 1.003906 3.148438 1.085938 3.148438 Z M 5.699219 5.148438 L 5.699219 5.847656 L 4.300781 5.847656 L 4.300781 5.148438 Z M 8.910156 9.214844 L 1.085938 9.214844 C 0.917969 9.214844 0.78125 9.078125 0.78125 8.910156 L 0.78125 5.640625 L 4.015625 5.640625 L 4.015625 5.851562 C 4.015625 5.925781 4.046875 6 4.097656 6.050781 C 4.152344 6.105469 4.226562 6.132812 4.300781 6.132812 L 5.699219 6.132812 C 5.855469 6.132812 5.980469 6.007812 5.980469 5.851562 L 5.980469 5.640625 L 9.21875 5.640625 L 9.21875 8.910156 C 9.21875 9.078125 9.082031 9.214844 8.914062 9.214844 Z M 8.910156 9.214844 "
+                    />
+                  </g>
+                </svg>
+
+                <b style={{ marginLeft: "4px" }}>Employment History</b>
               </p>
-              <p style={{ marginBottom: 0 }}>
-                {/* TODO: insert icon here */}
-                <b style={{ marginLeft: "16px" }}>Employment History</b>
-              </p>
-              <div style={{ marginLeft: "16px", marginTop: "16px" }}>
+              <div style={{ marginLeft: "16px", marginTop: "10px" }}>
                 {(profile.employmentHistory || []).map((history, index) => {
                   return (
                     <div key={index} style={{ marginTop: "4px" }}>
@@ -100,6 +118,14 @@ export const NewYorkTemplate: FunctionComponent<TemplateProps> = ({
                       >
                         {history.startDate}&nbsp;&mdash;&nbsp;{history.endDate}
                       </div>
+                      <p
+                        style={{
+                          fontSize: "smaller",
+                          whiteSpace: "pre-wrap",
+                        }}
+                      >
+                        {history.description}
+                      </p>
                     </div>
                   );
                 })}
