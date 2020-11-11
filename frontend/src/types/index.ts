@@ -18,13 +18,19 @@ export enum SkillLevelType {
   Expert,
 }
 
-export interface Skill {
+export interface IdentifiedEntity {
+  id: number;
+  [key: string]: any;
+}
+
+export interface Skill extends IdentifiedEntity {
   level: SkillLevelType;
   skillName: string;
   id: number;
 }
 
-export interface EmploymentHistory {
+export interface EmploymentHistory extends IdentifiedEntity {
+  id: number;
   jobTitle: string;
   employer: string;
   startDate: string;

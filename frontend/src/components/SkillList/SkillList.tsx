@@ -43,7 +43,7 @@ export const SkillList = (props: {
     // setSkills(skills.filter((skill) => skill.id !== id));
   };
 
-  const getRenderedSkill = (skill: Skill) => {
+  const getRenderedSkill = (skill: Skill & { isActive?: boolean }) => {
     const index = skills.indexOf(skill);
 
     return (
@@ -81,8 +81,8 @@ export const SkillList = (props: {
 
       <DraggableList
         items={skills}
-        onItemsReordered={(items) => setSkills(items)}
-        getRenderedItem={getRenderedSkill}
+        onItemsReordered={(items) => setSkills(items as Skill[])}
+        getRenderedItem={(item) => getRenderedSkill(item as Skill)}
         getItemStyle={(isDragging: boolean, draggableStyle: any) => {
           return {
             ...draggableStyle,

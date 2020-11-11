@@ -9,17 +9,12 @@ import {
   DraggingStyle,
   NotDraggingStyle,
 } from "react-beautiful-dnd";
-import { Skill } from "../../types";
-
-type ItemType = {
-  [key: string]: any;
-  id: string | number;
-} & Skill; // TODO: fix that
+import { IdentifiedEntity } from "../../types";
 
 export const DraggableList = (props: {
-  items: ItemType[];
-  onItemsReordered: (items: ItemType[]) => void;
-  getRenderedItem: (item: ItemType) => JSX.Element;
+  items: IdentifiedEntity[];
+  onItemsReordered: (items: IdentifiedEntity[]) => void;
+  getRenderedItem: (item: IdentifiedEntity) => JSX.Element;
   getItemStyle: (
     isDragging: boolean,
     draggableStyle: DraggingStyle | NotDraggingStyle | undefined
