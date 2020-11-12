@@ -1,0 +1,11 @@
+.widget-chip {
+  width: fit-content;
+  padding: 4px 8px 4px 8px;
+  margin: 0px 12px 12px 0px;
+  background-color: rgb(242, 245, 250);
+  border-radius: 4px;
+  cursor: pointer;
+}
+.widget-chip:hover {
+  color: #1890ff;
+}
