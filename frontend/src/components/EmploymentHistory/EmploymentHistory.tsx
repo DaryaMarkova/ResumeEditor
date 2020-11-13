@@ -2,21 +2,21 @@ import React, { useState, useEffect } from "react";
 import { Typography, Row, Col } from "antd";
 import { Collapse, Input, MonthDatePicker } from "../../shared";
 import { EmploymentHistory as Employment } from "../../types";
-import "./EmploymentHistory.css";
 import { EditableTextarea } from "../../shared/Textarea/Textarea";
+import "./EmploymentHistory.css";
 
 export const EmploymentHistory = (props: {
   history: Employment & { isActive?: boolean };
-  onEmploymentHistoryChanged: (employment: Employment) => void;
+  onEmploymentHistoryChanged: (
+    employment: Employment & { isActive?: boolean }
+  ) => void;
 }) => {
   const { Text } = Typography;
   const [history, setHistory] = useState<
     (Employment & { isActive?: boolean }) | null
   >(null);
 
-  useEffect(() => {
-    setHistory(props.history);
-  }, [props.history]);
+  useEffect(() => setHistory(props.history), [props.history]);
 
   const onEmploymentChanged = (
     value: string,
@@ -49,10 +49,13 @@ export const EmploymentHistory = (props: {
     return <b>(Not specified)</b>;
   };
 
-  // <b>&nbsp;at&nbsp;</b><b>{history?.employer}</b>
   return (
     <Collapse
       defaultExpanded={!!history?.isActive}
+      onDefaultExpandedChanged={(expanded) => {
+        if (history)
+          props.onEmploymentHistoryChanged({ ...history, isActive: expanded });
+      }}
       header={
         <>
           <div className="widget-employmenthistory-title">

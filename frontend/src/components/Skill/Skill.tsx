@@ -50,6 +50,9 @@ export const EditableSkill = (props: {
   return (
     <Collapse
       defaultExpanded={props.skill.isActive}
+      onDefaultExpandedChanged={(expanded) =>
+        props.onSkillChanged({ ...skill, isActive: expanded })
+      }
       header={
         <>
           <div className="widget-skill-name">

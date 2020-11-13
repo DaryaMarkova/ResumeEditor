@@ -4,8 +4,8 @@ import { PlusOutlined, DeleteOutlined } from "@ant-design/icons";
 import { Skill, SkillLevelType } from "../../types";
 import { EditableSkill } from "../Skill/Skill";
 import { DraggableList } from "../../shared/DraggableList/DraggableList";
-import "./SkillList.css";
 import { Chip } from "../../shared";
+import "./SkillList.css";
 
 export const SkillList = (props: {
   onSkillListChanged: (skills: Skill[], property: string) => void;
@@ -16,7 +16,6 @@ export const SkillList = (props: {
   const { onSkillListChanged } = props;
 
   useEffect(() => {
-    console.log("SKILLS", skills);
     onSkillListChanged(skills, "skills");
   }, [skills]);
 
@@ -35,6 +34,7 @@ export const SkillList = (props: {
   };
 
   const setSkillActive = (index: number) => {
+    console.log(index);
     // TODO: last skill is not set to active
     setSkills([
       ...skills.map((it, _index) =>
@@ -55,14 +55,13 @@ export const SkillList = (props: {
 
   const getRenderedSkill = (skill: Skill & { isActive?: boolean }) => {
     const index = skills.indexOf(skill);
-
+    console.log("GET RENDERED SKILL", skill, index);
     return (
       <Row key={skill.id} className="full-width" align="middle">
         <Col span={23}>
           <EditableSkill
             onSkillChanged={(_skill) => onSkillPropertyChanged(index, _skill)}
             skill={skill}
-            key={skill.id}
           />
         </Col>
         <Col span={1}>
