@@ -53,7 +53,7 @@ export const SkillList = (props: {
 
   const getRenderedSkill = (skill: Skill & { isActive?: boolean }) => {
     const index = skills.indexOf(skill);
-    console.log("GET RENDERED SKILL", skill, index);
+
     return (
       <Row key={skill.id} className="full-width" align="middle">
         <Col span={23}>

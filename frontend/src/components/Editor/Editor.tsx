@@ -5,8 +5,9 @@ import { IProfile, SocialLink as Link } from "../../types";
 import { DispatchAction } from "../../store";
 import { Input, ImagePicker, TextArea } from "../../shared";
 import { SkillList, EmploymentHistoryList } from "../../components";
-import { SocialLink } from "../Link";
+import { SocialLink } from "../SocialLink";
 import "./Editor.css";
+import { SocialLinkList } from "../SocialLinkList";
 
 export const Editor = () => {
   const { store, dispatch } = useStore();
@@ -147,7 +148,8 @@ export const Editor = () => {
           </Text>
         </Col>
         <Col span={24}>
-          <SocialLink link={link} onLinkChanged={(link) => setLink(link)} />
+          {/* <SocialLink link={link} onLinkChanged={(link) => setLink(link)} /> */}
+          <SocialLinkList />
         </Col>
       </Row>
     </div>
