@@ -34,8 +34,6 @@ export const SkillList = (props: {
   };
 
   const setSkillActive = (index: number) => {
-    console.log(index);
-    // TODO: last skill is not set to active
     setSkills([
       ...skills.map((it, _index) =>
         index == _index ? { ...it, isActive: true } : { ...it, isActive: false }

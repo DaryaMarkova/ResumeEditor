@@ -1,15 +1,23 @@
 import React, { useState } from "react";
 import { useStore } from "../../utils/useStore";
 import { Row, Col, Typography, Divider } from "antd";
-import { IProfile } from "../../types";
+import { IProfile, SocialLink as Link } from "../../types";
 import { DispatchAction } from "../../store";
 import { Input, ImagePicker, TextArea } from "../../shared";
 import { SkillList, EmploymentHistoryList } from "../../components";
+import { SocialLink } from "../Link";
 import "./Editor.css";
 
 export const Editor = () => {
   const { store, dispatch } = useStore();
   const [profile, setProfile] = useState<IProfile>(store.profile);
+  // temporarily
+  const [link, setLink] = useState<Link>({
+    id: 0,
+    label: "",
+    href: "",
+    isActive: true,
+  });
 
   const onProfileChanged = (
     value: string | boolean | any[],
@@ -130,6 +138,16 @@ export const Editor = () => {
         </Col>
         <Col span={24}>
           <SkillList onSkillListChanged={onProfileChanged} />
+        </Col>
+      </Row>
+      <Row gutter={24} className="resume-editor__row">
+        <Col span={24}>
+          <Text strong className="resume-editor__subtitle">
+            Websites & Social Links
+          </Text>
+        </Col>
+        <Col span={24}>
+          <SocialLink link={link} onLinkChanged={(link) => setLink(link)} />
         </Col>
       </Row>
     </div>

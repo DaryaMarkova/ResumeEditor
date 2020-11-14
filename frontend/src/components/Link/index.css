@@ -1,0 +1,10 @@
+.widget-sociallink__header-notspecified {
+  font-size: 0.9em;
+  font-weight: 500;
+  min-height: 30px;
+}
+.widget-sociallink__header-href {
+  display: block;
+  font-size: 0.9em;
+  color: rgb(152, 161, 179);
+}
