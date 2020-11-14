@@ -40,9 +40,9 @@ export const Editor = () => {
         Summary
       </Title>
       <Divider />
-      <Row gutter={24} className="resume-editor-row">
+      <Row gutter={24} className="resume-editor__row">
         <Col span={24}>
-          <Text className="resume-editor-subtitle" strong>
+          <Text className="resume-editor__subtitle" strong>
             Personal details
           </Text>
         </Col>
@@ -61,9 +61,9 @@ export const Editor = () => {
           />
         </Col>
       </Row>
-      <Row gutter={24} className="resume-editor-row">
+      <Row gutter={24} className="resume-editor__row">
         <Col span={24}>
-          <Text className="resume-editor-subtitle" strong>
+          <Text className="resume-editor__subtitle" strong>
             Professional summary
           </Text>
         </Col>
@@ -76,7 +76,7 @@ export const Editor = () => {
           />
         </Col>
       </Row>
-      <Row gutter={24} className="resume-editor-row">
+      <Row gutter={24} className="resume-editor__row">
         <Col span={12}>
           <Input
             placeholder="First Name"
@@ -94,7 +94,7 @@ export const Editor = () => {
           />
         </Col>
       </Row>
-      <Row gutter={24} className="resume-editor-row">
+      <Row gutter={24} className="resume-editor__row">
         <Col span={12}>
           <Input
             placeholder="Email"
@@ -112,24 +112,24 @@ export const Editor = () => {
           />
         </Col>
       </Row>
-      <Row gutter={24} className="resume-editor-row">
+      <Row gutter={24} className="resume-editor__row">
         <Col span={24}>
-          <Text strong className="resume-editor-subtitle">
-            Skills
-          </Text>
-        </Col>
-        <Col span={24}>
-          <SkillList onSkillListChanged={onProfileChanged} />
-        </Col>
-      </Row>
-      <Row gutter={24} className="resume-editor-row">
-        <Col span={24}>
-          <Text strong className="resume-editor-subtitle">
+          <Text strong className="resume-editor__subtitle">
             Employment History
           </Text>
         </Col>
         <Col span={24}>
           <EmploymentHistoryList onEmploymentListChanged={onProfileChanged} />
+        </Col>
+      </Row>
+      <Row gutter={24} className="resume-editor__row">
+        <Col span={24}>
+          <Text strong className="resume-editor__subtitle">
+            Skills
+          </Text>
+        </Col>
+        <Col span={24}>
+          <SkillList onSkillListChanged={onProfileChanged} />
         </Col>
       </Row>
     </div>
