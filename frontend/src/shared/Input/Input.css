@@ -1,16 +1,18 @@
 .widget-input {
   position: relative;
 }
+
 .widget-input-text ~ .widget-input-bar {
   position: absolute;
   left: calc(50% - 5px);
   bottom: -2px;
   width: 10px;
-  height: 2px;
+  height: 1px;
   background: rgb(33, 150, 243);
   content: "";
   visibility: hidden;
 }
+
 .widget-input-text:focus ~ .widget-input-bar {
   left: 0px;
   width: 100%;
@@ -18,21 +20,24 @@
   visibility: visible;
   transition: 0.3s ease-out;
 }
-.widget-input-text {
+
+.widget-input > input:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.widget-input > input {
   background-color: rgb(242, 245, 250);
   outline: none;
   border: none;
   border-radius: 3px 3px 0px 0px;
-  /* border-bottom: 1px solid rgb(242, 245, 250); */
 }
-.widget-input-text::before {
-  content: "&";
-}
-.widget-input-text:focus {
+
+/* .widget-input-text:focus {
   outline: none;
   box-shadow: none;
-  /* border-bottom: 1px solid rgb(33, 150, 243); */
-}
+} */
+
 .widget-input-label {
   margin-left: 2px;
   font-size: 10px;

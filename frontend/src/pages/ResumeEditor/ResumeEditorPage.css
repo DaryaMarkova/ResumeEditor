@@ -4,39 +4,30 @@
   height: auto;
 }
 
-.resume-editor-page-sider {
+.resume-editor-page__sider {
   position: relative;
-  /* width: 50%;
-	max-width: 960px; */
   width: 720px;
-  background-color: #fff;
+  /* background-color: #fff; */
   min-height: 100vh;
-  height: auto;
 }
 
-.resume-editor-page-content {
-  position: relative;
-  display: flex;
-  flex-wrap: wrap;
-  width: 50%;
-  min-width: calc(100% - 960px);
-  min-height: 100vh;
-  height: auto;
-  flex: 1;
+.resume-editor-page__content {
+  position: fixed;
+  top: 0px;
+  left: 720px;
+  width: calc(100% - 720px);
+  height: 100vh;
   background-color: rgb(122, 133, 153);
 }
 
-.resume-editor-page-sheet {
-  /* scaled to 0.8 */
-  /* 620 на 877 */
-  position: fixed;
+.resume-editor-page__sheet {
+  position: absolute;
   top: -40px;
-  left: calc(360px + 50% - 310px);
+  left: calc(50% - 310px);
   width: 620px;
   height: 877px;
   transform: scale(0.8);
   background-color: #fff;
-  border-radius: 4px;
 }
 
 .resume-editor-page-sheet-viewer {
@@ -46,11 +37,15 @@
 .resume-editor-page-sheet .viewer {
   height: 100%;
 }
-.resume-editor-page-tools {
+
+.resume-editor-page__tools {
+  position: absolute;
+  left: calc(50% - 248px);
+  bottom: 0px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  width: 496px;
   margin: 6px 0px;
 }
 

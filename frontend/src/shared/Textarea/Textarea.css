@@ -18,17 +18,14 @@
   visibility: visible;
   transition: 0.3s ease-out;
 }
-.widget-textarea-text {
+.widget-textarea > textarea {
   background-color: rgb(242, 245, 250);
   outline: none;
   border: none;
-  border-radius: 3px 3px 0px 0px;
-  /* border-bottom: 1px solid rgb(242, 245, 250); */
 }
-.widget-textarea-text:focus {
+.widget-textarea > textarea:focus {
   outline: none;
   box-shadow: none;
-  /* border-bottom: 1px solid rgb(33, 150, 243); */
 }
 .widget-textarea-label {
   margin-left: 2px;

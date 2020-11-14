@@ -6,25 +6,25 @@ import "./Collapse.css";
 
 export const Collapse = (props: {
   defaultExpanded?: boolean;
+  onDefaultExpandedChanged: (isExpanded: boolean) => void;
   header: JSX.Element;
   content: JSX.Element;
 }) => {
-  const [expanded, setExpanded] = useState(false);
-  const toggleExpanded = () => setExpanded(!expanded);
+  const [isExpanded, setIsExpanded] = useState(false);
 
-  useEffect(() => {
-    setExpanded(!!props.defaultExpanded);
-  }, [props.defaultExpanded]);
+  useEffect(() => setIsExpanded(!!props.defaultExpanded), [
+    props.defaultExpanded,
+  ]);
 
   return (
     <div
       className={classNames(
         "widget-collapse full-width",
         {
-          expanded: expanded,
+          expanded: props.defaultExpanded,
         },
         {
-          shortened: !expanded,
+          shortened: !props.defaultExpanded,
         }
       )}
     >
@@ -36,9 +36,9 @@ export const Collapse = (props: {
               size="small"
               type="text"
               shape="circle"
-              onClick={toggleExpanded}
+              onClick={() => props.onDefaultExpandedChanged(!isExpanded)}
               icon={
-                expanded ? (
+                props.defaultExpanded ? (
                   <UpOutlined className="widget-collapse-icon" />
                 ) : (
                   <DownOutlined className="widget-collapse-icon" />

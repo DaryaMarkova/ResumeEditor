@@ -5,11 +5,11 @@
 .resume-editor-title {
   text-align: center;
 }
-.resume-editor-subtitle {
+.resume-editor__subtitle {
   display: block;
   margin-top: 16px;
   margin-bottom: 12px;
 }
-.resume-editor-row {
+.resume-editor__row {
   margin-top: 10px;
 }
