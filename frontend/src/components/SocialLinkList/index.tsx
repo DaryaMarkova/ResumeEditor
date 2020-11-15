@@ -4,6 +4,7 @@ import { SocialLink as Link } from "../../types";
 import { SocialLink } from "../SocialLink";
 import { DeleteOutlined, PlusOutlined } from "@ant-design/icons";
 import "./index.css";
+import { DraggableList } from "../../shared/DraggableList/DraggableList";
 
 export const SocialLinkList = (props: {}) => {
   const [links, setLinks] = useState<Array<Link & { isActive?: boolean }>>([]);
@@ -16,24 +17,12 @@ export const SocialLinkList = (props: {}) => {
 
   const getRenderedItem = (link: Link & { isActive?: boolean }) => {
     const index = links.indexOf(link);
+
     return (
-      <Row key={link.id} className="full-width" align="middle">
-        <Col span={23}>
-          <SocialLink
-            link={link}
-            onLinkChanged={(link) => onLinkPropertyChanged(index, link)}
-          />
-        </Col>
-        <Col span={1}>
-          <Button
-            type="text"
-            shape="circle"
-            icon={<DeleteOutlined />}
-            size="small"
-            onClick={() => {}}
-          />
-        </Col>
-      </Row>
+      <SocialLink
+        link={link}
+        onLinkChanged={(link) => onLinkPropertyChanged(index, link)}
+      />
     );
   };
 
@@ -54,8 +43,25 @@ export const SocialLinkList = (props: {}) => {
   return (
     <>
       <div className="widget-link__list">
-        {links.map((link) => getRenderedItem(link))}
+        <DraggableList
+          items={links}
+          onItemsChanged={(items) => setLinks(items as Link[])}
+          getRenderedItem={(item) => getRenderedItem(item as Link)}
+          getItemStyle={(isDragging: boolean, draggableStyle: any) => {
+            // if (isDragging) {
+            //   return {
+            //     ...draggableStyle,
+            //     background: "rgb(242, 245, 250)",
+            //   };
+            // }
+
+            return {
+              ...draggableStyle,
+            };
+          }}
+        />
       </div>
+
       <Button
         type="link"
         onClick={addLink}

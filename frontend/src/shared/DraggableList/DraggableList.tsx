@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   DragDropContext,
   Droppable,
@@ -9,17 +9,23 @@ import {
   DraggingStyle,
   NotDraggingStyle,
 } from "react-beautiful-dnd";
+import { Button, Row, Col } from "antd";
 import { IdentifiedEntity } from "../../types";
+import { DeleteOutlined } from "@ant-design/icons";
 
 export const DraggableList = (props: {
   items: IdentifiedEntity[];
-  onItemsReordered: (items: IdentifiedEntity[]) => void;
+  onItemsChanged: (items: IdentifiedEntity[]) => void;
   getRenderedItem: (item: IdentifiedEntity) => JSX.Element;
   getItemStyle: (
     isDragging: boolean,
     draggableStyle: DraggingStyle | NotDraggingStyle | undefined
   ) => object;
 }) => {
+  const [items, setItems] = useState<IdentifiedEntity[]>([]);
+
+  useEffect(() => setItems(props.items), [props.items]);
+
   const reorder = (list: Array<any>, startIndex: number, endIndex: number) => {
     const result = Array.from(list);
     const [removed] = result.splice(startIndex, 1);
@@ -33,12 +39,18 @@ export const DraggableList = (props: {
     }
 
     const newItems = reorder(
-      props.items,
+      items,
       result.source.index,
       result.destination.index
     );
 
-    props.onItemsReordered(newItems);
+    props.onItemsChanged(newItems);
+  };
+
+  const onItemsDeleted = (index: number) => {
+    const newItems = items.slice(0, index).concat(items.slice(index + 1));
+    setItems(newItems);
+    props.onItemsChanged(newItems);
   };
 
   return (
@@ -46,7 +58,7 @@ export const DraggableList = (props: {
       <Droppable droppableId="droppable">
         {(provided: DroppableProvided, snapshot: DroppableStateSnapshot) => (
           <div {...provided.droppableProps} ref={provided.innerRef}>
-            {props.items.map((item, index) => (
+            {items.map((item, index) => (
               <Draggable
                 key={item.id}
                 draggableId={item.id.toString()}
@@ -62,7 +74,18 @@ export const DraggableList = (props: {
                       provided.draggableProps.style
                     )}
                   >
-                    {props.getRenderedItem(item)}
+                    <Row align="middle">
+                      <Col span={23}>{props.getRenderedItem(item)}</Col>
+                      <Col span={1}>
+                        <Button
+                          type="text"
+                          shape="circle"
+                          icon={<DeleteOutlined />}
+                          size="small"
+                          onClick={() => onItemsDeleted(index)}
+                        />
+                      </Col>
+                    </Row>
                   </div>
                 )}
               </Draggable>

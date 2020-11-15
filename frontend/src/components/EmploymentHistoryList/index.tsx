@@ -59,25 +59,12 @@ export const EmploymentHistoryList = (props: {
     const index = employmentHistoryList.indexOf(history);
 
     return (
-      <Row key={index} align="middle">
-        <Col span={23}>
-          <EmploymentHistory
-            onEmploymentHistoryChanged={(_history) =>
-              onEmploymentHistoryChanged(index, _history)
-            }
-            history={history}
-          />
-        </Col>
-        <Col span={1}>
-          <Button
-            type="text"
-            shape="circle"
-            icon={<DeleteOutlined />}
-            size="small"
-            onClick={() => onEmploymentHistoryDeleted(index)}
-          />
-        </Col>
-      </Row>
+      <EmploymentHistory
+        onEmploymentHistoryChanged={(_history) =>
+          onEmploymentHistoryChanged(index, _history)
+        }
+        history={history}
+      />
     );
   };
 
@@ -85,7 +72,7 @@ export const EmploymentHistoryList = (props: {
     <div className="widget-employmenthistory__list">
       <DraggableList
         items={employmentHistoryList}
-        onItemsReordered={(items) =>
+        onItemsChanged={(items) =>
           setEmploymentHistoryList(items as Employment[])
         }
         getRenderedItem={(item) =>

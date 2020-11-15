@@ -47,31 +47,14 @@ export const SkillList = (props: {
     );
   };
 
-  const onSkillDeleted = (index: number) => {
-    setSkills(skills.slice(0, index).concat(skills.slice(index + 1)));
-  };
-
   const getRenderedSkill = (skill: Skill & { isActive?: boolean }) => {
     const index = skills.indexOf(skill);
 
     return (
-      <Row key={skill.id} className="full-width" align="middle">
-        <Col span={23}>
-          <EditableSkill
-            onSkillChanged={(_skill) => onSkillPropertyChanged(index, _skill)}
-            skill={skill}
-          />
-        </Col>
-        <Col span={1}>
-          <Button
-            type="text"
-            shape="circle"
-            icon={<DeleteOutlined />}
-            size="small"
-            onClick={() => onSkillDeleted(index)}
-          />
-        </Col>
-      </Row>
+      <EditableSkill
+        onSkillChanged={(_skill) => onSkillPropertyChanged(index, _skill)}
+        skill={skill}
+      />
     );
   };
 
@@ -100,7 +83,7 @@ export const SkillList = (props: {
 
       <DraggableList
         items={skills}
-        onItemsReordered={(items) => setSkills(items as Skill[])}
+        onItemsChanged={() => {}}
         getRenderedItem={(item) => getRenderedSkill(item as Skill)}
         getItemStyle={(isDragging: boolean, draggableStyle: any) => {
           return {
