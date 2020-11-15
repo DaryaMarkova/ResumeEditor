@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button, Row, Col, Switch as Switcher, Typography } from "antd";
-import { PlusOutlined, DeleteOutlined } from "@ant-design/icons";
+import { Switch as Switcher, Typography } from "antd";
 import { Skill, SkillLevelType } from "../../types";
 import { EditableSkill } from "../Skill/Skill";
 import { DraggableList } from "../../shared/DraggableList/DraggableList";
@@ -18,20 +17,6 @@ export const SkillList = (props: {
   useEffect(() => {
     onSkillListChanged(skills, "skills");
   }, [skills]);
-
-  const addSkill = () => {
-    setSkills([
-      ...skills.map((it) => {
-        return { ...it, isActive: false };
-      }),
-      {
-        level: SkillLevelType.Novice,
-        skillName: "",
-        id: skills.length,
-        isActive: true,
-      },
-    ]);
-  };
 
   const setSkillActive = (index: number) => {
     setSkills([
@@ -83,7 +68,15 @@ export const SkillList = (props: {
 
       <DraggableList
         items={skills}
-        onItemsChanged={() => {}}
+        onItemsChanged={(items) => setSkills(items as Skill[])}
+        getItemInstance={() => {
+          return {
+            id: skills.length,
+            level: SkillLevelType.Novice,
+            skillName: "",
+            isActive: true,
+          };
+        }}
         getRenderedItem={(item) => getRenderedSkill(item as Skill)}
         getItemStyle={(isDragging: boolean, draggableStyle: any) => {
           return {
@@ -91,15 +84,6 @@ export const SkillList = (props: {
           };
         }}
       />
-
-      <Button
-        type="link"
-        onClick={addSkill}
-        className="widget-skill__list-addbutton"
-      >
-        <PlusOutlined />
-        Add skill
-      </Button>
     </div>
   );
 };

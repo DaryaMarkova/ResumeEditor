@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { EmploymentHistory } from "../EmploymentHistory/EmploymentHistory";
 import { EmploymentHistory as Employment } from "../../types/";
-import { Button, Row, Col } from "antd";
-import { DeleteOutlined, PlusOutlined } from "@ant-design/icons";
 import { DraggableList } from "../../shared/DraggableList/DraggableList";
 import moment from "moment";
 import "./style.css";
@@ -23,35 +21,11 @@ export const EmploymentHistoryList = (props: {
     }
   }, [employmentHistoryList]);
 
-  const addEmployment = () => {
-    setEmploymentHistoryList([
-      ...employmentHistoryList.map((it, index) => {
-        return { ...it, id: index, isActive: false };
-      }),
-      {
-        id: employmentHistoryList.length,
-        jobTitle: "",
-        employer: "",
-        isActive: true,
-        startDate: moment().format("MMMM YYYY"),
-        endDate: "Present",
-      },
-    ]);
-  };
-
   const onEmploymentHistoryChanged = (index: number, history: Employment) => {
     setEmploymentHistoryList(
       employmentHistoryList.map((_history, _index) =>
         _index == index ? history : _history
       )
-    );
-  };
-
-  const onEmploymentHistoryDeleted = (index: number) => {
-    setEmploymentHistoryList(
-      employmentHistoryList
-        .slice(0, index)
-        .concat(employmentHistoryList.slice(index + 1))
     );
   };
 
@@ -72,6 +46,16 @@ export const EmploymentHistoryList = (props: {
     <div className="widget-employmenthistory__list">
       <DraggableList
         items={employmentHistoryList}
+        getItemInstance={() => {
+          return {
+            id: employmentHistoryList.length,
+            jobTitle: "",
+            employer: "",
+            isActive: true,
+            startDate: moment().format("MMMM YYYY"),
+            endDate: "Present",
+          };
+        }}
         onItemsChanged={(items) =>
           setEmploymentHistoryList(items as Employment[])
         }
@@ -82,14 +66,6 @@ export const EmploymentHistoryList = (props: {
           draggableStyle
         }
       />
-      <Button
-        type="link"
-        className="widget-employmenthistory__list_add"
-        onClick={addEmployment}
-      >
-        <PlusOutlined />
-        Add employment
-      </Button>
     </div>
   );
 };

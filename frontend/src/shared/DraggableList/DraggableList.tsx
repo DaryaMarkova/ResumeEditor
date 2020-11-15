@@ -11,10 +11,11 @@ import {
 } from "react-beautiful-dnd";
 import { Button, Row, Col } from "antd";
 import { IdentifiedEntity } from "../../types";
-import { DeleteOutlined } from "@ant-design/icons";
+import { DeleteOutlined, PlusOutlined } from "@ant-design/icons";
 
 export const DraggableList = (props: {
   items: IdentifiedEntity[];
+  getItemInstance: () => IdentifiedEntity;
   onItemsChanged: (items: IdentifiedEntity[]) => void;
   getRenderedItem: (item: IdentifiedEntity) => JSX.Element;
   getItemStyle: (
@@ -47,52 +48,74 @@ export const DraggableList = (props: {
     props.onItemsChanged(newItems);
   };
 
-  const onItemsDeleted = (index: number) => {
+  const onItemDeleted = (index: number) => {
     const newItems = items.slice(0, index).concat(items.slice(index + 1));
-    setItems(newItems);
+    props.onItemsChanged(newItems);
+  };
+
+  const onItemAdded = () => {
+    const newItems = [
+      ...items.map((it) => {
+        return { ...it, isActive: false };
+      }),
+      props.getItemInstance(),
+    ];
+
     props.onItemsChanged(newItems);
   };
 
   return (
-    <DragDropContext onDragEnd={onDragEnd}>
-      <Droppable droppableId="droppable">
-        {(provided: DroppableProvided, snapshot: DroppableStateSnapshot) => (
-          <div {...provided.droppableProps} ref={provided.innerRef}>
-            {items.map((item, index) => (
-              <Draggable
-                key={item.id}
-                draggableId={item.id.toString()}
-                index={index}
-              >
-                {(provided, snapshot) => (
-                  <div
-                    ref={provided.innerRef}
-                    {...provided.draggableProps}
-                    {...provided.dragHandleProps}
-                    style={props.getItemStyle(
-                      snapshot.isDragging,
-                      provided.draggableProps.style
-                    )}
-                  >
-                    <Row align="middle">
-                      <Col span={23}>{props.getRenderedItem(item)}</Col>
-                      <Col span={1}>
-                        <Button
-                          type="text"
-                          shape="circle"
-                          icon={<DeleteOutlined />}
-                          size="small"
-                          onClick={() => onItemsDeleted(index)}
-                        />
-                      </Col>
-                    </Row>
-                  </div>
-                )}
-              </Draggable>
-            ))}
-          </div>
-        )}
-      </Droppable>
-    </DragDropContext>
+    <>
+      <DragDropContext onDragEnd={onDragEnd}>
+        <Droppable droppableId="droppable">
+          {(provided: DroppableProvided, snapshot: DroppableStateSnapshot) => (
+            <div {...provided.droppableProps} ref={provided.innerRef}>
+              {items.map((item, index) => (
+                <Draggable
+                  key={item.id}
+                  draggableId={item.id.toString()}
+                  index={index}
+                >
+                  {(provided, snapshot) => (
+                    <div
+                      ref={provided.innerRef}
+                      {...provided.draggableProps}
+                      {...provided.dragHandleProps}
+                      style={props.getItemStyle(
+                        snapshot.isDragging,
+                        provided.draggableProps.style
+                      )}
+                    >
+                      <Row align="middle">
+                        <Col span={23}>{props.getRenderedItem(item)}</Col>
+                        <Col span={1}>
+                          <Button
+                            type="text"
+                            shape="circle"
+                            icon={<DeleteOutlined />}
+                            size="small"
+                            onClick={() => onItemDeleted(index)}
+                          />
+                        </Col>
+                      </Row>
+                    </div>
+                  )}
+                </Draggable>
+              ))}
+            </div>
+          )}
+        </Droppable>
+      </DragDropContext>
+      <Button
+        type="link"
+        shape="round"
+        size="small"
+        icon={<PlusOutlined />}
+        onClick={onItemAdded}
+        style={{ marginLeft: "-10px" }}
+      >
+        Add
+      </Button>
+    </>
   );
 };
