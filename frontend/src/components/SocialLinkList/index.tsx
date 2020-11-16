@@ -1,11 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { SocialLink as Link } from "../../types";
 import { SocialLink } from "../SocialLink";
 import { DraggableList } from "../../shared/DraggableList/DraggableList";
 import "./index.css";
 
-export const SocialLinkList = (props: {}) => {
+export const SocialLinkList = (props: {
+  onSocialLinksListChanged: (links: Link[], property: string) => void;
+}) => {
   const [links, setLinks] = useState<Array<Link & { isActive?: boolean }>>([]);
+
+  useEffect(() => {
+    props.onSocialLinksListChanged(links, "links");
+  }, [links]);
 
   const onLinkPropertyChanged = (index: number, updatedLink: Link) => {
     setLinks(
@@ -40,12 +46,6 @@ export const SocialLinkList = (props: {}) => {
           onItemsChanged={(items) => setLinks(items as Link[])}
           getRenderedItem={(item) => getRenderedItem(item as Link)}
           getItemStyle={(isDragging: boolean, draggableStyle: any) => {
-            // if (isDragging) {
-            //   return {
-            //     ...draggableStyle,
-            //     background: "rgb(242, 245, 250)",
-            //   };
-            // }
             return {
               ...draggableStyle,
             };

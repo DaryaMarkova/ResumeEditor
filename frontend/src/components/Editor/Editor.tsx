@@ -1,27 +1,19 @@
 import React, { useState } from "react";
 import { useStore } from "../../utils/useStore";
 import { Row, Col, Typography, Divider } from "antd";
-import { IProfile, SocialLink as Link } from "../../types";
+import { IProfile, IdentifiedEntity, SocialLink as Link } from "../../types";
 import { DispatchAction } from "../../store";
 import { Input, ImagePicker, TextArea } from "../../shared";
 import { SkillList, EmploymentHistoryList } from "../../components";
-import { SocialLink } from "../SocialLink";
-import "./Editor.css";
 import { SocialLinkList } from "../SocialLinkList";
+import "./Editor.css";
 
 export const Editor = () => {
   const { store, dispatch } = useStore();
   const [profile, setProfile] = useState<IProfile>(store.profile);
-  // temporarily
-  const [link, setLink] = useState<Link>({
-    id: 0,
-    label: "",
-    href: "",
-    isActive: true,
-  });
 
   const onProfileChanged = (
-    value: string | boolean | any[],
+    value: string | boolean | IdentifiedEntity[],
     property?: keyof IProfile | string
   ) => {
     if (!property) {
@@ -148,8 +140,7 @@ export const Editor = () => {
           </Text>
         </Col>
         <Col span={24}>
-          {/* <SocialLink link={link} onLinkChanged={(link) => setLink(link)} /> */}
-          <SocialLinkList />
+          <SocialLinkList onSocialLinksListChanged={onProfileChanged} />
         </Col>
       </Row>
     </div>

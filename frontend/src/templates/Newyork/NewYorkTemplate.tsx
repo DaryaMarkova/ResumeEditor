@@ -161,6 +161,21 @@ export const NewYorkTemplate: FunctionComponent<TemplateProps> = ({
               >
                 {profile.email || ProfileDefaults.email}
               </p>
+              <p style={{ marginBottom: 0, fontSize: "smaller" }}>
+                {profile.links && profile.links.length > 0 && <b>Links</b>}
+              </p>
+              {profile.links &&
+                profile.links
+                  .filter((it) => !!it.label)
+                  .map((link, index) => (
+                    <a
+                      key={index}
+                      href={link.href}
+                      style={{ display: "block", fontSize: "smaller" }}
+                    >
+                      {link.label}
+                    </a>
+                  ))}
               <p
                 style={{
                   marginBottom: "4px",
