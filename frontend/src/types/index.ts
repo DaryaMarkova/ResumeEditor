@@ -6,6 +6,7 @@ export interface IProfile {
   email?: string;
   phone?: string;
   skills?: Skill[];
+  links?: SocialLink[];
   hasAvatar?: boolean;
   employmentHistory?: EmploymentHistory[];
 }
@@ -26,11 +27,14 @@ export interface IdentifiedEntity {
 export interface Skill extends IdentifiedEntity {
   level: SkillLevelType;
   skillName: string;
-  id: number;
+}
+
+export interface SocialLink extends IdentifiedEntity {
+  label: string;
+  href: string;
 }
 
 export interface EmploymentHistory extends IdentifiedEntity {
-  id: number;
   jobTitle: string;
   employer: string;
   startDate: string;

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button, Row, Col, Switch as Switcher, Typography } from "antd";
-import { PlusOutlined, DeleteOutlined } from "@ant-design/icons";
+import { Switch as Switcher, Typography } from "antd";
 import { Skill, SkillLevelType } from "../../types";
 import { EditableSkill } from "../Skill/Skill";
 import { DraggableList } from "../../shared/DraggableList/DraggableList";
@@ -19,23 +18,7 @@ export const SkillList = (props: {
     onSkillListChanged(skills, "skills");
   }, [skills]);
 
-  const addSkill = () => {
-    setSkills([
-      ...skills.map((it) => {
-        return { ...it, isActive: false };
-      }),
-      {
-        level: SkillLevelType.Novice,
-        skillName: "",
-        id: skills.length,
-        isActive: true,
-      },
-    ]);
-  };
-
   const setSkillActive = (index: number) => {
-    console.log(index);
-    // TODO: last skill is not set to active
     setSkills([
       ...skills.map((it, _index) =>
         index == _index ? { ...it, isActive: true } : { ...it, isActive: false }
@@ -49,31 +32,14 @@ export const SkillList = (props: {
     );
   };
 
-  const onSkillDeleted = (index: number) => {
-    setSkills(skills.slice(0, index).concat(skills.slice(index + 1)));
-  };
-
   const getRenderedSkill = (skill: Skill & { isActive?: boolean }) => {
     const index = skills.indexOf(skill);
-    console.log("GET RENDERED SKILL", skill, index);
+
     return (
-      <Row key={skill.id} className="full-width" align="middle">
-        <Col span={23}>
-          <EditableSkill
-            onSkillChanged={(_skill) => onSkillPropertyChanged(index, _skill)}
-            skill={skill}
-          />
-        </Col>
-        <Col span={1}>
-          <Button
-            type="text"
-            shape="circle"
-            icon={<DeleteOutlined />}
-            size="small"
-            onClick={() => onSkillDeleted(index)}
-          />
-        </Col>
-      </Row>
+      <EditableSkill
+        onSkillChanged={(_skill) => onSkillPropertyChanged(index, _skill)}
+        skill={skill}
+      />
     );
   };
 
@@ -102,7 +68,15 @@ export const SkillList = (props: {
 
       <DraggableList
         items={skills}
-        onItemsReordered={(items) => setSkills(items as Skill[])}
+        onItemsChanged={(items) => setSkills(items as Skill[])}
+        getItemInstance={() => {
+          return {
+            id: skills.length,
+            level: SkillLevelType.Novice,
+            skillName: "",
+            isActive: true,
+          };
+        }}
         getRenderedItem={(item) => getRenderedSkill(item as Skill)}
         getItemStyle={(isDragging: boolean, draggableStyle: any) => {
           return {
@@ -110,15 +84,6 @@ export const SkillList = (props: {
           };
         }}
       />
-
-      <Button
-        type="link"
-        onClick={addSkill}
-        className="widget-skill__list-addbutton"
-      >
-        <PlusOutlined />
-        Add skill
-      </Button>
     </div>
   );
 };

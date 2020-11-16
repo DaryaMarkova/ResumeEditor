@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { useStore } from "../../utils/useStore";
 import { Row, Col, Typography, Divider } from "antd";
-import { IProfile } from "../../types";
+import { IProfile, IdentifiedEntity, SocialLink as Link } from "../../types";
 import { DispatchAction } from "../../store";
 import { Input, ImagePicker, TextArea } from "../../shared";
 import { SkillList, EmploymentHistoryList } from "../../components";
+import { SocialLinkList } from "../SocialLinkList";
 import "./Editor.css";
 
 export const Editor = () => {
@@ -12,7 +13,7 @@ export const Editor = () => {
   const [profile, setProfile] = useState<IProfile>(store.profile);
 
   const onProfileChanged = (
-    value: string | boolean | any[],
+    value: string | boolean | IdentifiedEntity[],
     property?: keyof IProfile | string
   ) => {
     if (!property) {
@@ -130,6 +131,16 @@ export const Editor = () => {
         </Col>
         <Col span={24}>
           <SkillList onSkillListChanged={onProfileChanged} />
+        </Col>
+      </Row>
+      <Row gutter={24} className="resume-editor__row">
+        <Col span={24}>
+          <Text strong className="resume-editor__subtitle">
+            Websites & Social Links
+          </Text>
+        </Col>
+        <Col span={24}>
+          <SocialLinkList onSocialLinksListChanged={onProfileChanged} />
         </Col>
       </Row>
     </div>
