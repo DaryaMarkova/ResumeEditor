@@ -14,8 +14,6 @@ app.use(bodyParser.json());
 app.use("/assets", express.static("./uploads"));
 app.use(express.static("./public"));
 
-// app.use(express.static(path.join(__dirname, "public")));
-// https://levelup.gitconnected.com/render-dynamic-content-in-nodejs-using-templates-a58cae681148
 app.use(cors());
 app.use(fileUpload());
 
@@ -82,26 +80,33 @@ app.post("/upload", (req, res) => {
 });
 // async/await
 app.get("/html", (req, res) => {
-  // ejs.renderFile(
-  //   path.join(__dirname, "src", "views", "index.ejs"),
-  //   { username: "Darya Markova" },
-  //   (err, html) => {
-  //     if (err) {
-  //       pdf.create("", {}).toFile("./resume.pdf");
-  //     }
-  //     pdf.create(html, {}).toFile("./resume.pdf", function (err, response) {
-  //       if (err) {
-  //         return res.status(500).json(err);
-  //       }
-  //       res.download("./resume.pdf");
-  //     });
-  //   }
-  // );
-  // res.attachment();
-
-  res.render("index", {
-    username: "Darya Markova",
-  });
+  ejs.renderFile(
+    path.join(__dirname, "src", "views", "newyork", "index.ejs"),
+    { username: "Darya Markova" },
+    (err, html) => {
+      if (err) {
+        pdf.create("", {}).toFile("./resume.pdf");
+      }
+      pdf
+        .create(html, {
+          border: {
+            top: "32px",
+            right: "18px",
+            bottom: "24px",
+            left: "36px",
+          },
+        })
+        .toFile("./resume.pdf", function (err, response) {
+          if (err) {
+            return res.status(500).json(err);
+          }
+          res.download("./resume.pdf");
+        });
+    }
+  );
+  // res.render("newyork/index", {
+  //   username: "Darya Markova",
+  // });
 });
 
 app.get("/", (req, res) => {

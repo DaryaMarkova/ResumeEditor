@@ -1,0 +1,40 @@
+<div class="template-header">
+  <div class="template-header__avatar"></div>
+  <div class="template-header__info">
+    <h2>Darya Markova</h2>
+    <!-- take from params -->
+    <span>Software Engineer | FrontEnd Developer</span>
+    <!-- take from params -->
+  </div>
+</div>
+<style>
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: 1.1px;
+  }
+  .template-header {
+    display: flex;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+  .template-header__info h2 {
+    margin: 0;
+    font-weight: 500;
+  }
+  .template-header__info span {
+    font-size: smaller;
+  }
+  .template-header__avatar {
+    width: 70px;
+    height: 70px;
+    border-radius: 8px;
+    background-image: url("http://localhost:3005/assets/avatar.jpg"); /*take from params*/
+    background-size: cover;
+  }
+  .template-header__info {
+    margin-left: 16px;
+  }
+</style>
