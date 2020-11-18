@@ -47,13 +47,15 @@ app.get("/pdf", (req, res) => {
 app.post("/pdf", (req, res) => {
   try {
     const html = `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Resume</title></head><body>${req.body.content}</body></html>`;
-    pdf.create(html, {}).toFile("./resume.pdf", function (err, response) {
-      if (err) {
-        return res.status(500).json(err);
-      }
+    pdf
+      .create(html, {})
+      .toFile("./public/resume.pdf", function (err, response) {
+        if (err) {
+          return res.status(500).json(err);
+        }
 
-      res.download("./resume.pdf");
-    });
+        res.download("./public/resume.pdf");
+      });
   } catch (err) {
     res.status(500).json(err);
   }
@@ -78,14 +80,15 @@ app.post("/upload", (req, res) => {
     return res.status(500).send(err);
   }
 });
-// async/await
+
+// async/await - rerender pdf with new data
 app.get("/html", (req, res) => {
   ejs.renderFile(
     path.join(__dirname, "src", "views", "newyork", "index.ejs"),
     { username: "Darya Markova" },
     (err, html) => {
       if (err) {
-        pdf.create("", {}).toFile("./resume.pdf");
+        pdf.create("", {}).toFile("./public/resume.pdf");
       }
       pdf
         .create(html, {
@@ -96,17 +99,23 @@ app.get("/html", (req, res) => {
             left: "36px",
           },
         })
-        .toFile("./resume.pdf", function (err, response) {
+        .toFile("./public/resume.pdf", function (err, response) {
           if (err) {
             return res.status(500).json(err);
           }
-          res.download("./resume.pdf");
+          res.download("./public/resume.pdf");
         });
     }
   );
+
   // res.render("newyork/index", {
   //   username: "Darya Markova",
   // });
+});
+
+app.post("/render_pdf", (req, res) => {
+  // data & rerendering pdf
+  res.status(200).json({ status: "ok" });
 });
 
 app.get("/", (req, res) => {

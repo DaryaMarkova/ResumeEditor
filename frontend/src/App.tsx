@@ -15,6 +15,13 @@ function App() {
         <Route path={"/templates"}>
           <TemplateSwitcherPage />
         </Route>
+        <Route path={"/pdf"}>
+          <p>Displaying pdf page</p>
+          <iframe
+            src="http://localhost:3005/resume.pdf"
+            style={{ width: "480px", height: "640px" }}
+          />
+        </Route>
       </Switch>
     </div>
   );

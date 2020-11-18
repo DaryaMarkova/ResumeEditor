@@ -42,7 +42,6 @@ export const dispatch = (action: TDispatchAction) => {
       });
       return;
     case DispatchAction.updateProfileAction:
-      console.log("UPDATE PROFILE ACTION", action.payload);
       store$.next({
         ...store$.value,
         profile: action.payload as IProfile,

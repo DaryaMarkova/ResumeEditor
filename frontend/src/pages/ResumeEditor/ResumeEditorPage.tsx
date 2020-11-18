@@ -31,10 +31,14 @@ export function ResumeEditorPage() {
         <Editor />
       </div>
       <div className="resume-editor-page__content">
-        <div className="resume-editor-page__sheet">
+        {/* HOW TO RELOAD PDF-PAGE AUTOMATICALLY ?? */}
+
+        <Viewer templateRef={templateRef} />
+
+        {/* <div className="resume-editor-page__sheet">
           <Viewer templateRef={templateRef} />
-        </div>
-        <div className="resume-editor-page__tools">
+        </div> */}
+        {/* <div className="resume-editor-page__tools">
           <Link
             className="resume-editor-page-link-to-templates"
             to="/templates"
@@ -45,7 +49,7 @@ export function ResumeEditorPage() {
           <Button type="primary" onClick={onDownloadPdfButtonClicked}>
             Download pdf
           </Button>
-        </div>
+        </div> */}
       </div>
     </div>
   );
