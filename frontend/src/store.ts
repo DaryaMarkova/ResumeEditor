@@ -22,9 +22,10 @@ const initialState: TStore = {
   selectedTemplate: ETemplate.NewYork,
   profile: {
     jobTitle: "",
-    firstName: "",
-    lastName: "",
-    summary: "",
+    firstName: "FirstName",
+    lastName: "LastName",
+    summary:
+      "Enthusiastic Software Engineer  |  Front End Developer with 4 years of experience and curious admirer of Data Structures and Algorithms",
     hasAvatar: false,
     skills: [],
     employmentHistory: [],

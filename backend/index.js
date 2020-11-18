@@ -9,6 +9,8 @@ const pdf = require("html-pdf");
 const ejs = require("ejs");
 
 const app = express();
+const { createProxyMiddleware } = require("http-proxy-middleware");
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use("/assets", express.static("./uploads"));
@@ -82,14 +84,30 @@ app.post("/upload", (req, res) => {
 });
 
 // async/await - rerender pdf with new data
-app.get("/html", (req, res) => {
+app.get("/resume_html", (req, res) => {
+  res.render("newyork/index", {
+    firstName: "FirstName",
+    lastName: "LastName",
+    summary:
+      "Enthusiastic Software Engineer  |  Front End Developer with 4 years of experience and curious admirer of Data Structures and Algorithms",
+  });
+});
+
+app.post("/render_pdf", (req, res) => {
+  const profile = req.body || {};
+
   ejs.renderFile(
     path.join(__dirname, "src", "views", "newyork", "index.ejs"),
-    { username: "Darya Markova" },
+    {
+      firstName: profile.firstName,
+      lastName: profile.lastName,
+      summary: profile.summary,
+    },
     (err, html) => {
       if (err) {
         pdf.create("", {}).toFile("./public/resume.pdf");
       }
+
       pdf
         .create(html, {
           border: {
@@ -103,24 +121,25 @@ app.get("/html", (req, res) => {
           if (err) {
             return res.status(500).json(err);
           }
-          res.download("./public/resume.pdf");
+
+          res.status(200).json({ status: "Successfully rendered" });
+          // res.download("./public/resume.pdf");
         });
     }
   );
-
-  // res.render("newyork/index", {
-  //   username: "Darya Markova",
-  // });
-});
-
-app.post("/render_pdf", (req, res) => {
-  // data & rerendering pdf
-  res.status(200).json({ status: "ok" });
 });
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
+
+// app.use(
+//   "**",
+//   createProxyMiddleware({
+//     target: "https://resumebuilder.io/",
+//     changeOrigin: true,
+//   })
+// );
 
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);

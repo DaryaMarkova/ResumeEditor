@@ -8,6 +8,7 @@ export const NewYorkTemplate: FunctionComponent<TemplateProps> = ({
   profile,
   domRef,
 }) => {
+  // insert code from the server side
   return (
     <>
       <div className="template-newyork" ref={domRef}>
