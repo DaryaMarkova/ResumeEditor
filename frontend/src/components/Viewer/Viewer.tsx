@@ -17,6 +17,7 @@ import {
   PDFRenderParams,
   PDFRenderTask,
 } from "pdfjs-dist";
+import { render } from "@testing-library/react";
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 export const Viewer = (props: { templateRef?: RefObject<HTMLDivElement> }) => {
@@ -30,13 +31,23 @@ export const Viewer = (props: { templateRef?: RefObject<HTMLDivElement> }) => {
   const documentRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<any>(null); // bad approach
 
+  let renderTask: PDFRenderTask | null = null;
+
   async function loadPdf() {
-    const canvas = document.createElement("canvas");
+    if (renderTask) {
+      renderTask.cancel();
+    }
+
+    // if (!renderTask?.promise.isRejected) {
+    //   return;
+    // }
+
+    // const canvas = document.createElement("canvas");
     const pdf = await pdfjs.getDocument("/resume.pdf").promise;
     const page = await pdf.getPage(pageNumber);
     const viewport = page.getViewport({ scale: 0.8 });
 
-    // const canvas = canvasRef.current;
+    const canvas = canvasRef.current;
     const context = canvas.getContext("2d");
 
     canvas.height = viewport.height;
@@ -48,14 +59,14 @@ export const Viewer = (props: { templateRef?: RefObject<HTMLDivElement> }) => {
         viewport: viewport,
       };
 
-      const renderTask = page.render(renderContext);
+      renderTask = page.render(renderContext);
 
       renderTask.promise.then(function () {
-        // console.log("pdf has been reloaded");
-      });
+        console.log("pdf has been reloaded");
+      }, loadPdf);
 
-      documentRef.current?.childNodes.forEach((child) => child.remove());
-      documentRef.current?.appendChild(canvas);
+      // documentRef.current?.childNodes.forEach((child) => child.remove());
+      // documentRef.current?.appendChild(canvas);
     }
   }
 
@@ -68,6 +79,7 @@ export const Viewer = (props: { templateRef?: RefObject<HTMLDivElement> }) => {
   }, [debouncedStore]);
 
   const generatePdf = () => {
+    // cancel axios request if newone is upcoming
     axios
       .post("/render_pdf", {
         firstName: store.profile.firstName,
@@ -94,7 +106,7 @@ export const Viewer = (props: { templateRef?: RefObject<HTMLDivElement> }) => {
         margin: "36px auto",
       }}
     >
-      {/* <canvas ref={canvasRef}></canvas> */}
+      <canvas ref={canvasRef}></canvas>
     </div>
   );
 
