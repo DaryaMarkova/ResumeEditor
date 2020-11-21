@@ -1,5 +1,5 @@
 import { Switcher } from "./Switcher/Switcher";
-import { Viewer } from "./Viewer/Viewer";
+import { Viewer } from "./Viewer";
 import { Editor } from "./Editor/Editor";
 import { SkillList } from "./SkillList/SkillList";
 import { EmploymentHistoryList } from "./EmploymentHistoryList";
