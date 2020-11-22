@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^4.2.2",
+    "@react-pdf/renderer": "^1.6.12",
     "@types/react-pdf": "^5.0.0",
     "antd": "^4.6.3",
     "axios": "^0.20.0",

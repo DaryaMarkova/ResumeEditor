@@ -44,20 +44,10 @@ app.get("/pdf", (req, res) => {
     return res.status(500).json(err);
   }
 });
-// just test script
-// https://www.npmjs.com/package/html-pdf
+
 app.post("/pdf", (req, res) => {
   try {
-    const html = `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Resume</title></head><body>${req.body.content}</body></html>`;
-    pdf
-      .create(html, {})
-      .toFile("./public/resume.pdf", function (err, response) {
-        if (err) {
-          return res.status(500).json(err);
-        }
-
-        res.download("./public/resume.pdf");
-      });
+    res.download("./public/resume.pdf");
   } catch (err) {
     res.status(500).json(err);
   }

@@ -3,8 +3,9 @@ import { useStore } from "../../utils/useStore";
 import { useDebounce } from "../../utils/useDebounce";
 import { pdfjs } from "react-pdf";
 import axios, { CancelTokenSource } from "axios";
+import fileDownload from "js-file-download";
 import { PDFDocumentProxy, PDFRenderTask } from "pdfjs-dist";
-import { Spin } from "antd";
+import { Button } from "antd";
 import "./index.css";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
@@ -35,6 +36,7 @@ export const Viewer = (props: { templateRef?: RefObject<HTMLDivElement> }) => {
   }, []);
 
   useEffect(() => {
+    // not on the whole storage update
     updatePdfDocument();
   }, [debouncedStore]);
 
@@ -42,9 +44,7 @@ export const Viewer = (props: { templateRef?: RefObject<HTMLDivElement> }) => {
     if (renderTask) {
       renderTask.cancel();
     }
-    // if (!renderTask?.promise.isRejected) {
-    //   return;
-    // }
+
     const pdf = await pdfjs.getDocument("/resume.pdf").promise;
     const page = await pdf.getPage(pageNumber);
     const viewport = page.getViewport({ scale: 0.8 });
@@ -102,17 +102,36 @@ export const Viewer = (props: { templateRef?: RefObject<HTMLDivElement> }) => {
       .catch((err) => console.log(err));
   };
 
+  const onDownloadPdfButtonClicked = () => {
+    axios
+      .post(
+        "/pdf",
+        {},
+        {
+          responseType: "blob",
+        }
+      )
+      .then((response) => fileDownload(response.data, "resume.pdf"))
+      .catch((err) => console.log(err));
+  };
+
   return (
     <div ref={documentRef} className="viewer">
       <div className="viewer__loading">
-        {loading && (
-          <div>
-            <Spin />
-            <span>&nbsp; Loading...</span>
-          </div>
+        {loading && <span>&nbsp; Loading...</span>}
+      </div>
+      <div className="viewer__canvas">
+        <canvas ref={canvasRef}></canvas>
+        {!loading && (
+          <Button
+            className="viewer__downloadbtn"
+            type="primary"
+            onClick={onDownloadPdfButtonClicked}
+          >
+            Download pdf
+          </Button>
         )}
       </div>
-      <canvas ref={canvasRef}></canvas>
     </div>
   );
 };

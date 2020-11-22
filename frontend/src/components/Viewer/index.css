@@ -1,8 +1,25 @@
 .viewer {
-  width: fit-content;
-  margin: 36px auto;
+  position: relative;
+  width: 100%;
+  border: 1px solid transparent;
 }
 .viewer__loading {
+  position: absolute;
+  top: 6px;
+  left: 0px;
+  width: 100%;
   color: #fff;
-  margin-bottom: 10px;
+  text-align: center;
+  font-size: small;
+}
+.viewer__canvas {
+  width: fit-content;
+  margin: 36px auto;
+  text-align: center;
+}
+.viewer__canvas canvas {
+  display: block;
+}
+.viewer__downloadbtn {
+  margin-top: 12px;
 }
