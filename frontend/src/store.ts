@@ -21,11 +21,11 @@ export type TDispatchAction = {
 const initialState: TStore = {
   selectedTemplate: ETemplate.NewYork,
   profile: {
-    jobTitle: "",
+    jobTitle: "Job Title",
     firstName: "FirstName",
     lastName: "LastName",
     summary:
-      "Enthusiastic Software Engineer  |  Front End Developer with 4 years of experience and curious admirer of Data Structures and Algorithms",
+      "Enthusiastic Software Engineer  |  Front End Developer with many years of experience and curious admirer of Data Structures and Algorithms",
     hasAvatar: false,
     skills: [],
     employmentHistory: [],

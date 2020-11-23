@@ -88,21 +88,17 @@ app.post("/render_pdf", (req, res) => {
 
   ejs.renderFile(
     path.join(__dirname, "src", "views", "newyork", "index.ejs"),
-    {
-      firstName: profile.firstName,
-      lastName: profile.lastName,
-      summary: profile.summary,
-    },
+    profile,
     (err, html) => {
       if (err) {
-        pdf.create("", {}).toFile("./public/resume.pdf");
+        return res.status(500).json(err);
       }
 
       pdf
         .create(html, {
           border: {
             top: "32px",
-            right: "18px",
+            right: "36px",
             bottom: "24px",
             left: "36px",
           },

@@ -27,10 +27,14 @@ export const Viewer = (props: { templateRef?: RefObject<HTMLDivElement> }) => {
 
   useEffect(() => {
     (async function () {
-      const pdf = await loadPdfDocument();
+      try {
+        const pdf = await loadPdfDocument();
 
-      if (pdf) {
-        setCountPages(pdf?.numPages);
+        if (pdf) {
+          setCountPages(pdf?.numPages);
+        }
+      } catch (err) {
+        setLoading(true);
       }
     })();
   }, []);
@@ -79,17 +83,9 @@ export const Viewer = (props: { templateRef?: RefObject<HTMLDivElement> }) => {
     setLoading(true);
 
     axios
-      .post(
-        "/render_pdf",
-        {
-          firstName: store.profile.firstName,
-          lastName: store.profile.lastName,
-          summary: store.profile.summary,
-        },
-        {
-          cancelToken: source.token,
-        }
-      )
+      .post("/render_pdf", store.profile, {
+        cancelToken: source.token,
+      })
       .then(async (response) => {
         const pdf = await loadPdfDocument();
 
