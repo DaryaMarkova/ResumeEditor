@@ -5,7 +5,7 @@ import { pdfjs } from "react-pdf";
 import axios, { CancelTokenSource } from "axios";
 import fileDownload from "js-file-download";
 import { PDFDocumentProxy, PDFRenderTask } from "pdfjs-dist";
-import { Button } from "antd";
+import { Button, Spin } from "antd";
 import "./index.css";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
@@ -114,7 +114,12 @@ export const Viewer = (props: { templateRef?: RefObject<HTMLDivElement> }) => {
   return (
     <div ref={documentRef} className="viewer">
       <div className="viewer__loading">
-        {loading && <span>&nbsp; Loading...</span>}
+        {loading && (
+          <span>
+            {" "}
+            <Spin size={"small"} /> &nbsp; Loading...
+          </span>
+        )}
       </div>
       <div className="viewer__canvas">
         <canvas ref={canvasRef}></canvas>

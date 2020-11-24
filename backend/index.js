@@ -73,13 +73,14 @@ app.post("/upload", (req, res) => {
   }
 });
 
-// async/await - rerender pdf with new data
 app.get("/resume_html", (req, res) => {
   res.render("newyork/index", {
     firstName: "FirstName",
     lastName: "LastName",
     summary:
       "Enthusiastic Software Engineer  |  Front End Developer with 4 years of experience and curious admirer of Data Structures and Algorithms",
+    jobTitle: "Software Engineer",
+    employmentHistory: [],
   });
 });
 
