@@ -1,6 +1,6 @@
 import { BehaviorSubject } from "rxjs";
 import { ETemplate } from "./templates";
-import { IProfile } from "./types";
+import { IProfile, ProfileDefaults } from "./types";
 
 export enum DispatchAction {
   switchTemplateAction = "SWITCH_TEMPLATE",
@@ -24,6 +24,8 @@ const initialState: TStore = {
     jobTitle: "Job Title",
     firstName: "FirstName",
     lastName: "LastName",
+    phone: ProfileDefaults.phone,
+    email: ProfileDefaults.email,
     summary:
       "Enthusiastic Software Engineer  |  Front End Developer with many years of experience and curious admirer of Data Structures and Algorithms",
     hasAvatar: false,

@@ -1,0 +1,47 @@
+<% let skillClassMap = ['level-one', 'level-two', 'level-three', 'level-four',
+'level-five'] %>
+<ul class="template-skilllist">
+  <% skills.forEach(function(skill) { %>
+  <li class="template-skilllist__item level <%= skillClassMap[skill.level] %>">
+    <%=skill.skillName %>
+  </li>
+  <% }); %>
+</ul>
+<style>
+  .template-skilllist {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: small;
+  }
+  .template-skilllist__item {
+    position: relative;
+    max-width: 120px;
+    display: block;
+    font-size: smaller;
+    padding: 2px 0;
+  }
+  .template-skilllist__item.level::before {
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    left: 0px;
+    height: 2px;
+    background-color: rgb(33, 150, 243);
+  }
+  .template-skilllist__item.level.level-one::before {
+    width: 20%;
+  }
+  .template-skilllist__item.level.level-two::before {
+    width: 40%;
+  }
+  .template-skilllist__item.level.level-three::before {
+    width: 60%;
+  }
+  .template-skilllist__item.level.level-four::before {
+    width: 80%;
+  }
+  .template-skilllist__item.level.level-five::before {
+    width: 100%;
+  }
+</style>

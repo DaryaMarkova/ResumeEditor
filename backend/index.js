@@ -9,7 +9,6 @@ const pdf = require("html-pdf");
 const ejs = require("ejs");
 
 const app = express();
-const { createProxyMiddleware } = require("http-proxy-middleware");
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -81,6 +80,9 @@ app.get("/resume_html", (req, res) => {
       "Enthusiastic Software Engineer  |  Front End Developer with 4 years of experience and curious admirer of Data Structures and Algorithms",
     jobTitle: "Software Engineer",
     employmentHistory: [],
+    skills: [],
+    email: "darya.markova.95@mail.ru",
+    phone: "+79527536533",
   });
 });
 
@@ -99,7 +101,7 @@ app.post("/render_pdf", (req, res) => {
         .create(html, {
           border: {
             top: "32px",
-            right: "36px",
+            right: "16px",
             bottom: "24px",
             left: "36px",
           },

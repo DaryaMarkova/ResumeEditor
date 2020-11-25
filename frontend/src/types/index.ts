@@ -26,6 +26,7 @@ export interface IdentifiedEntity {
 
 export interface Skill extends IdentifiedEntity {
   level: SkillLevelType;
+  levelShown: boolean;
   skillName: string;
 }
 

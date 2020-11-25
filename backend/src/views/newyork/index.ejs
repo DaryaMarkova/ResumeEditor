@@ -6,7 +6,22 @@
     <title>Resume page</title>
   </head>
   <body>
-    <%- include('header.ejs') %> <%- include('profile.ejs') %>
-    <%-include('employment.ejs') %>
+    <%- include('header.ejs') %>
+    <table>
+      <tbody>
+        <tr>
+          <td valign="top">
+            <%- include('profile.ejs') %> <%-include('employment.ejs') %>
+          </td>
+          <td valign="top" style="min-width: 100px; padding-left: 10px">
+            <h3 style="margin-bottom: 12px; font-size: small">Details</h3>
+            <%- include('contact.ejs') %>
+            <h3 style="margin-bottom: 12px; font-size: small">Links</h3>
+            <h3 style="margin-bottom: 4px; font-size: small">Skills</h3>
+            <%- include('skills.ejs') %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </body>
 </html>
