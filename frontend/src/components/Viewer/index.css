@@ -14,7 +14,7 @@
 }
 .viewer__canvas {
   width: fit-content;
-  margin: 36px auto;
+  margin: 12px auto;
   text-align: center;
 }
 .viewer__canvas canvas {
@@ -22,4 +22,12 @@
 }
 .viewer__downloadbtn {
   margin-top: 12px;
+}
+.viewer__paging {
+  width: fit-content;
+  margin: 6px auto;
+  color: #fff;
+}
+.viewer__paging span {
+  font-size: small;
 }

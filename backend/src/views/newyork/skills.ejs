@@ -1,5 +1,6 @@
 <% let skillClassMap = ['level-one', 'level-two', 'level-three', 'level-four',
-'level-five'] %>
+'level-five'] %> <% if (skills && skills.length > 0) { %>
+<h3 style="margin-bottom: 4px; font-size: small">Skills</h3>
 <ul class="template-skilllist">
   <% skills.forEach(function(skill) { %> <% if (skill.skillName) { %>
   <li
@@ -9,6 +10,8 @@
   </li>
   <% } %> <% }); %>
 </ul>
+<% } %>
+
 <style>
   .template-skilllist {
     margin: 0;
@@ -18,6 +21,7 @@
   }
   .template-skilllist__item {
     position: relative;
+    margin-top: 4px;
     max-width: 120px;
     display: block;
     font-size: smaller;

@@ -1,11 +1,12 @@
 import React, { RefObject, useEffect, useState, useRef } from "react";
+import axios, { CancelTokenSource } from "axios";
+import fileDownload from "js-file-download";
 import { useStore } from "../../utils/useStore";
 import { useDebounce } from "../../utils/useDebounce";
 import { pdfjs } from "react-pdf";
-import axios, { CancelTokenSource } from "axios";
-import fileDownload from "js-file-download";
 import { PDFDocumentProxy, PDFRenderTask } from "pdfjs-dist";
 import { Button, Spin } from "antd";
+import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import "./index.css";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
@@ -51,7 +52,7 @@ export const Viewer = (props: { templateRef?: RefObject<HTMLDivElement> }) => {
 
     const pdf = await pdfjs.getDocument("/resume.pdf").promise;
     const page = await pdf.getPage(pageNumber);
-    const viewport = page.getViewport({ scale: 0.8 });
+    const viewport = page.getViewport({ scale: 0.9 });
     const canvas = canvasRef.current;
     const context = canvas?.getContext("2d");
 
@@ -113,8 +114,26 @@ export const Viewer = (props: { templateRef?: RefObject<HTMLDivElement> }) => {
 
   return (
     <div ref={documentRef} className="viewer">
-      <div className="viewer__loading">
-        {loading && (
+      <div className="viewer__paging">
+        {!loading ? (
+          <>
+            <Button
+              type="link"
+              size="small"
+              icon={
+                <LeftOutlined style={{ color: "#fff", fontSize: "x-small" }} />
+              }
+            />
+            <span>1</span>&nbsp;/&nbsp;<span>{countPages}</span>
+            <Button
+              type="link"
+              size="small"
+              icon={
+                <RightOutlined style={{ color: "#fff", fontSize: "x-small" }} />
+              }
+            />
+          </>
+        ) : (
           <span>
             {" "}
             <Spin size={"small"} /> &nbsp; Loading...

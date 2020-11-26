@@ -81,6 +81,7 @@ app.get("/resume_html", (req, res) => {
     jobTitle: "Software Engineer",
     employmentHistory: [],
     skills: [],
+    links: [],
     email: "darya.markova.95@mail.ru",
     phone: "+79527536533",
   });
