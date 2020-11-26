@@ -1,11 +1,13 @@
 <% let skillClassMap = ['level-one', 'level-two', 'level-three', 'level-four',
 'level-five'] %>
 <ul class="template-skilllist">
-  <% skills.forEach(function(skill) { %>
-  <li class="template-skilllist__item level <%= skillClassMap[skill.level] %>">
+  <% skills.forEach(function(skill) { %> <% if (skill.skillName) { %>
+  <li
+    class="template-skilllist__item level <%= skill.levelShown ? skillClassMap[skill.level] : '' %>"
+  >
     <%=skill.skillName %>
   </li>
-  <% }); %>
+  <% } %> <% }); %>
 </ul>
 <style>
   .template-skilllist {

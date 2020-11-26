@@ -12,11 +12,20 @@ export const SkillList = (props: {
   const [skills, setSkills] = useState<Array<Skill & { isActive?: boolean }>>(
     []
   );
+
+  const [shown, setLevelShown] = useState<boolean>(true);
   const { onSkillListChanged } = props;
 
   useEffect(() => {
     onSkillListChanged(skills, "skills");
   }, [skills]);
+
+  useEffect(() => {
+    props.onSkillListChanged(
+      skills.map((skill) => ({ ...skill, levelShown: shown })),
+      "skills"
+    );
+  }, [shown]);
 
   const setSkillActive = (index: number) => {
     setSkills([
@@ -48,7 +57,8 @@ export const SkillList = (props: {
   return (
     <div className="widget-skill__list">
       <Paragraph>
-        <Switcher size={"small"} />
+        <Switcher size="small" onChange={() => setLevelShown(!shown)} />
+
         <Text style={{ fontSize: "small" }}>
           &nbsp;&nbsp;Don't show experience level
         </Text>
@@ -74,6 +84,7 @@ export const SkillList = (props: {
             id: skills.length,
             level: SkillLevelType.Novice,
             skillName: "",
+            levelShown: true,
             isActive: true,
           };
         }}
