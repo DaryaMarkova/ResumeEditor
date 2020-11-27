@@ -7,6 +7,7 @@ import { Input, ImagePicker, TextArea } from "../../shared";
 import { SkillList, EmploymentHistoryList } from "../../components";
 import { SocialLinkList } from "../SocialLinkList";
 import "./Editor.css";
+import { EducationList } from "../EducationList";
 
 export const Editor = () => {
   const { store, dispatch } = useStore();
@@ -121,6 +122,16 @@ export const Editor = () => {
         </Col>
         <Col span={24}>
           <EmploymentHistoryList onEmploymentListChanged={onProfileChanged} />
+        </Col>
+      </Row>
+      <Row gutter={24} className="resume-editor__row">
+        <Col span={24}>
+          <Text strong className="resume-editor__subtitle">
+            Education
+          </Text>
+        </Col>
+        <Col span={24}>
+          <EducationList />
         </Col>
       </Row>
       <Row gutter={24} className="resume-editor__row">

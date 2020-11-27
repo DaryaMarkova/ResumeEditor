@@ -44,6 +44,15 @@ export interface EmploymentHistory extends IdentifiedEntity {
   description?: string;
 }
 
+export interface Education extends IdentifiedEntity {
+  school: string;
+  degree: string;
+  startDate: string;
+  endDate: string;
+  city?: string;
+  description?: string;
+}
+
 export const ProfileDefaults = {
   jobTitle: "Job title",
   firstName: "Firstname",
