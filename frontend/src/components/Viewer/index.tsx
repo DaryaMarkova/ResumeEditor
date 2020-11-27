@@ -45,6 +45,11 @@ export const Viewer = (props: { templateRef?: RefObject<HTMLDivElement> }) => {
     updatePdfDocument();
   }, [debouncedStore]);
 
+  useEffect(() => {
+    console.log("LOAD PDF DOCUMENT");
+    updatePdfDocument();
+  }, [pageNumber]);
+
   async function loadPdfDocument(): Promise<PDFDocumentProxy | undefined> {
     if (renderTask) {
       renderTask.cancel();
@@ -112,6 +117,14 @@ export const Viewer = (props: { templateRef?: RefObject<HTMLDivElement> }) => {
       .catch((err) => console.log(err));
   };
 
+  const onPrevPageButtonClicked = async () => {
+    setPageNumber(Math.max(1, pageNumber - 1));
+  };
+
+  const onNextPageButtonClicked = async () => {
+    setPageNumber(Math.min(countPages, pageNumber + 1));
+  };
+
   return (
     <div ref={documentRef} className="viewer">
       <div className="viewer__paging">
@@ -120,14 +133,16 @@ export const Viewer = (props: { templateRef?: RefObject<HTMLDivElement> }) => {
             <Button
               type="link"
               size="small"
+              onClick={onPrevPageButtonClicked}
               icon={
                 <LeftOutlined style={{ color: "#fff", fontSize: "x-small" }} />
               }
             />
-            <span>1</span>&nbsp;/&nbsp;<span>{countPages}</span>
+            <span>{pageNumber}</span>&nbsp;/&nbsp;<span>{countPages}</span>
             <Button
               type="link"
               size="small"
+              onClick={onNextPageButtonClicked}
               icon={
                 <RightOutlined style={{ color: "#fff", fontSize: "x-small" }} />
               }

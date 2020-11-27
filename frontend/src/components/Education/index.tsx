@@ -7,15 +7,31 @@ import "./index.css";
 
 export const Education = (props: {
   education: EducationModel & { isActive?: boolean };
+  onEducationChanged: (education: EducationModel | null) => void;
 }) => {
   const { Text } = Typography;
   const [model, setModel] = useState<
     (EducationModel & { isActive?: boolean }) | null
   >(null);
 
+  const onEducationChanged = (
+    value: string,
+    bindProperty: keyof EducationModel | string
+  ) => {
+    if (!model) {
+      return;
+    }
+
+    props.onEducationChanged({ ...model, [bindProperty]: value });
+  };
+
+  useEffect(() => {
+    setModel(props.education);
+  }, [props.education]);
+
   return (
     <Collapse
-      defaultExpanded={!!model?.isActive}
+      defaultExpanded={model?.isActive}
       onDefaultExpandedChanged={() => {}}
       header={<div className="widget-education__title">Some title</div>}
       content={
@@ -25,7 +41,7 @@ export const Education = (props: {
               <Input
                 placeholder="School"
                 defaultValue={model?.school}
-                onInputValueChanged={() => {}}
+                onInputValueChanged={onEducationChanged}
                 bindProperty={"school"}
               />
             </Col>
@@ -33,7 +49,7 @@ export const Education = (props: {
               <Input
                 placeholder="Degree"
                 defaultValue={model?.degree}
-                onInputValueChanged={() => {}}
+                onInputValueChanged={onEducationChanged}
                 bindProperty={"degree"}
               />
             </Col>
