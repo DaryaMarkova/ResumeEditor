@@ -6,8 +6,8 @@ import { DispatchAction } from "../../store";
 import { Input, ImagePicker, TextArea } from "../../shared";
 import { SkillList, EmploymentHistoryList } from "../../components";
 import { SocialLinkList } from "../SocialLinkList";
-import "./Editor.css";
 import { EducationList } from "../EducationList";
+import "./Editor.css";
 
 export const Editor = () => {
   const { store, dispatch } = useStore();
@@ -131,7 +131,7 @@ export const Editor = () => {
           </Text>
         </Col>
         <Col span={24}>
-          <EducationList />
+          <EducationList onEducationListChanged={onProfileChanged} />
         </Col>
       </Row>
       <Row gutter={24} className="resume-editor__row">

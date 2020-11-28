@@ -25,6 +25,22 @@ export const Education = (props: {
     props.onEducationChanged({ ...model, [bindProperty]: value });
   };
 
+  const getEducationHeader = () => {
+    if (model?.school && model.degree) {
+      return (
+        <span>
+          {model.degree}&nbsp;at&nbsp;{model.school}
+        </span>
+      );
+    } else if (model?.school) {
+      return <span>{model.school}</span>;
+    } else if (model?.degree) {
+      return <span>{model.degree}</span>;
+    }
+
+    return <b>(Not specified)</b>;
+  };
+
   useEffect(() => {
     setModel(props.education);
   }, [props.education]);
@@ -32,8 +48,17 @@ export const Education = (props: {
   return (
     <Collapse
       defaultExpanded={model?.isActive}
-      onDefaultExpandedChanged={() => {}}
-      header={<div className="widget-education__title">Some title</div>}
+      onDefaultExpandedChanged={(expanded) => {
+        if (model) props.onEducationChanged({ ...model, isActive: expanded });
+      }}
+      header={
+        <div className="widget-education__title">
+          {getEducationHeader()}
+          <div className="widget-education__dates">
+            {model?.startDate} - {model?.endDate}
+          </div>
+        </div>
+      }
       content={
         <>
           <Row gutter={[24, 8]} className="full-width">
@@ -42,7 +67,7 @@ export const Education = (props: {
                 placeholder="School"
                 defaultValue={model?.school}
                 onInputValueChanged={onEducationChanged}
-                bindProperty={"school"}
+                bindProperty="school"
               />
             </Col>
             <Col span={12}>
@@ -50,7 +75,7 @@ export const Education = (props: {
                 placeholder="Degree"
                 defaultValue={model?.degree}
                 onInputValueChanged={onEducationChanged}
-                bindProperty={"degree"}
+                bindProperty="degree"
               />
             </Col>
           </Row>
@@ -63,15 +88,24 @@ export const Education = (props: {
                 Start & End Date
               </Text>
               <div className="widget-employmenthistory__dates">
-                <MonthDatePicker onDateChanged={(date) => {}} />
-                <MonthDatePicker isEndDate onDateChanged={(date) => {}} />
+                <MonthDatePicker
+                  onDateChanged={(date) => {
+                    onEducationChanged(date, "startDate");
+                  }}
+                />
+                <MonthDatePicker
+                  onDateChanged={(date) => {
+                    onEducationChanged(date, "endDate");
+                  }}
+                  isEndDate
+                />
               </div>
             </Col>
             <Col span={12}>
               <Input
                 placeholder="City"
                 defaultValue={model?.city}
-                onInputValueChanged={() => {}}
+                onInputValueChanged={onEducationChanged}
                 bindProperty={"city"}
               />
             </Col>
@@ -80,7 +114,9 @@ export const Education = (props: {
                 placeholder="Description"
                 defaultValue={model?.description}
                 bindProperty={"description"}
-                onTextareaValueChanged={(value, property) => {}}
+                onTextareaValueChanged={(value, property) => {
+                  onEducationChanged(value, property!);
+                }}
               />
             </Col>
           </Row>

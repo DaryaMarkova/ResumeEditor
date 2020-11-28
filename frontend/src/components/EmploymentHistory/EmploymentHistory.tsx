@@ -62,7 +62,7 @@ export const EmploymentHistory = (props: {
             {getEmploymentHeader()}
           </div>
           <Text className="widget-employmenthistory-dates" type="secondary">
-            Sep 2017 - Aug 2019
+            {history?.startDate} - {history?.endDate}
           </Text>
         </>
       }

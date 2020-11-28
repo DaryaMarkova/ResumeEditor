@@ -46,7 +46,6 @@ export const Viewer = (props: { templateRef?: RefObject<HTMLDivElement> }) => {
   }, [debouncedStore]);
 
   useEffect(() => {
-    console.log("LOAD PDF DOCUMENT");
     updatePdfDocument();
   }, [pageNumber]);
 
@@ -150,7 +149,6 @@ export const Viewer = (props: { templateRef?: RefObject<HTMLDivElement> }) => {
           </>
         ) : (
           <span>
-            {" "}
             <Spin size={"small"} /> &nbsp; Loading...
           </span>
         )}

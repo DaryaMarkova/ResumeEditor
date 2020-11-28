@@ -9,6 +9,7 @@ export interface IProfile {
   links?: SocialLink[];
   hasAvatar?: boolean;
   employmentHistory?: EmploymentHistory[];
+  educationList?: Education[];
 }
 
 export enum SkillLevelType {

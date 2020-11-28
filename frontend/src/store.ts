@@ -31,6 +31,7 @@ const initialState: TStore = {
     hasAvatar: false,
     skills: [],
     employmentHistory: [],
+    educationList: [],
   },
 };
 
